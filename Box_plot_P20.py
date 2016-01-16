@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+''' Distribution de la Taille des séquences dans les Protéomes
+Pour chaque proteome, construire un plot des tailles de sequences 
+'''
 
 import sys
 from pylab import *
-# import matplotlib
-# import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 import os
 
 
@@ -14,7 +16,6 @@ def plot_P20 (proteome_dir):
     for filename in os.listdir(proteome_dir):
         if filename.endswith(".fasta"):
             path_proteome = os.path.join(proteome_dir, filename)
-            nbseq = 0
             seqLen = 0
             list_seq_lenght= []
             list_seq_name = []
@@ -23,25 +24,16 @@ def plot_P20 (proteome_dir):
             for line in f:
                 if line != '':
                     line = line[:-1]
-                    if line[0] == '>':
-                        nbseq = nbseq + 1
-                        seq_name = line [1:]
-                        list_seq_name.append(seq_name)
                     if line [0] != '>':
                         Taille_proteome= Taille_proteome+1
                         seqLen = len(line)
                         list_seq_lenght.append(seqLen)
             list_taille.append(list_seq_lenght)
             f.close()
-    # print (filename+'\t',list_taille)
-    d = []
-    for i in range (len(list_taille)):
-        d.append(list_taille[i])
-    # print (d[0])
-    # #Construire un plot
-
+            
+    #Construire un plot de liste des tailles de sequences pour chaque proteomes
     plt.figure()
-    plt.boxplot(d,  0, 'gD')
+    plt.boxplot(list_taille,  0, 'gD')
     plt.grid(True)
     plt.ylabel('Taille des Séquences')
     plt.xlabel('Protéomes')
