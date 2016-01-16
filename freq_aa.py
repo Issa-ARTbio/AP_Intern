@@ -33,7 +33,7 @@ def Freq_AA (proteome_dir, list_aa):
                         dict_aa[aa] =  []
                     dict_aa[aa].append(freq)
     # print (dict_aa)
-    N = 10
+    N = 10 # Permet de fixer le nombre de proteomes initiale dans le dossier[10 pour le test]
     ind = np.arange(N)
     width = 0.20
     for aa in list_aa:
@@ -48,7 +48,7 @@ def Freq_AA (proteome_dir, list_aa):
         ax.set_xlabel(u'Protéomes')
         ax.set_title(u"Distribution de la Fréquences de "+aa+" dans les Protéomes")
         save_file = plt.savefig(proteome_dir+u'_Freq_aa.png')
-        # plt.show()
+        plt.show()
         plt.close()
     return (save_file)
 # proteome_dir = '/home/issa/Documents/STAGE/Data/Init_data/Proteomes_test/ex/'
