@@ -13,7 +13,6 @@ import os
 def Freq_AA (proteome_dir, list_aa):
     #Creation d'un dico vide pour stocker la fréquence de chaque aa
     dict_aa = {}
-    list_filename = []
     for filename in os.listdir(proteome_dir):
         if filename.endswith(".fasta"):
             list_filename.append(filename)
@@ -27,6 +26,7 @@ def Freq_AA (proteome_dir, list_aa):
                         for aa in line:
                             Taille_proteome= Taille_proteome+1
                             Prot[aa] = Prot.get(aa, 0) +1
+                # Pour chaque aa dans la list_aa, ajouter la frequence correspondante si presente dans dico
                 for aa in list_aa:
                     freq = Prot.get(aa, 0) / Taille_proteome
                     if aa not in dict_aa:
@@ -51,7 +51,6 @@ def Freq_AA (proteome_dir, list_aa):
         plt.show()
         plt.close()
     return (save_file)
-# proteome_dir = '/home/issa/Documents/STAGE/Data/Init_data/Proteomes_test/ex/'
 proteome_dir = '/home/issa/Documents/STAGE/Data/Init_data/Proteomes_test/'
 list_aa = ['A', 'R', 'N', 'D', 'C', 'Q', 'E','G', 'H', 'I', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y','V']
 print ('Loading Plots...')
