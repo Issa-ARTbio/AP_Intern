@@ -7,7 +7,7 @@ import os, sys, argparse, re
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-
+import random
 
 def read_freq (proteom_composition_aa):
     """ 'Description de la fonction' : A partir du fichier Taille_Proteome.dat contenant la composition en acide amine pour chaque proteome
@@ -36,6 +36,12 @@ def read_freq (proteom_composition_aa):
 def get_all_freq(proteome_name, dico_freq, list_aa):
     """ return the list of AA frequencies for a particular proteome
     """
+    list_freq = []
+
+    for aa in list_aa:
+        fr_aa = dico_freq[aa][proteome_name]
+        list_freq.append(fr_aa)
+
     pass
 
 
@@ -91,6 +97,7 @@ def get_name_min_med_max (dico_freq, amino, list_aa):
 
 def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
 
+    # fig = super(PlotWindPowerDensity, self).get_figure()
     for aa in my_dico_min:
         data_min,  data_med, data_max = None, None, None
         liste_min, liste_med, liste_max = [], [], []
@@ -110,19 +117,28 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
 
 
         r = np.arange(20)
-        ax = plt.subplot(111, projection='polar')
+        ax = plt.subplot(111, polar=True)
         data_min = sorted (data_min[1:])
-        ax = plt.plot (data_min, color='black',linewidth=3)
+        ax.fill(data_min[1:],  facecolor='r',linewidth=3,alpha= 0.5, label = data_min[0])
+        ax.fill(data_med[1:],  facecolor='m',linewidth=3,alpha= 0.5, label = data_min[0])
+        ax.fill(data_max[1:],  facecolor='g',linewidth=3,alpha= 0.5, label = data_min[0])
+#test : http://stackoverflow.com/questions/33072450/matplotlib-polar-plot-axis-tick-label-location
+        # ax.plot ( color='black',linewidth=3)
         plt.grid(True)
+        ax.set_xticks(r)
+        ax.set_xticklabels (list_aa)
+        ax.set_title('Plot de la frequence de '+ aa, va ='bottom', color = 'k')
+
+        # fig.add_axes(ax)
         plt.show()
 
 
 
 if __name__ == "__main__":
-    proteom_composition_aa = '/home/issa/Documents/STAGE/Results/proteome_composition_AA.csv'
+    proteom_composition_aa = 'proteome_composition_AA.csv'
     dico_aa = read_freq (proteom_composition_aa)
     amino = ['A', 'K', 'N', 'L']
     list_aa = ['A', 'R', 'N', 'D', 'C', 'Q', 'E','G', 'H', 'I', 'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V']
     dico_min, dico_med, dico_max = get_name_min_med_max(dico_aa,amino, list_aa)
-    my_plot = polar_plotting(dico_min, dico_med, dico_max)
+    my_plot = polar_plotting(dico_min, dico_med, dico_max, list_aa)
     # polar_plotting (dico_aa, names)
