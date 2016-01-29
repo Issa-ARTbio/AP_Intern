@@ -1,0 +1,14 @@
+Potein:Protein 1	Taille:249
+Potein:Protein 2	Taille:241
+Potein:Protein 3	Taille:238
+Potein:Protein 4	Taille:232
+Potein:Protein 5	Taille:270
+Potein:Protein 6	Taille:229
+Potein:Protein 7	Taille:324
+Potein:Protein 8	Taille:265
+Potein:Protein 9	Taille:224
+Potein:Protein 10	Taille:223
+Potein:Protein 11	Taille:216
+Potein:Protein 12	Taille:219
+Potein:Protein 13	Taille:215
+Potein:Protein 14	Taille:222
