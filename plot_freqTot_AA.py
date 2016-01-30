@@ -13,7 +13,8 @@ import os, sys, argparse, re
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from itertools import cycle
+import itertools
+
 from collections import OrderedDict
 
 def Freq_AA (proteom_composition_aa):
@@ -64,7 +65,7 @@ def Freq_AA (proteom_composition_aa):
         # linestyles = {'1': 'solid', '2': 'dashed', '3': 'dashdot', '4': 'dotted'}
         # markers = {'d': 'thin_diamond', '*': 'star', '^': 'triangle_up', '+': 'plus', 's': 'square'
         # color = {}
-        for proteome in data.keys():
+        for proteome in data:
             # mk = markers[m]
             data_aa=(data[proteome])
             values_aa.append(data_aa)
@@ -107,25 +108,30 @@ def Freq_AA (proteom_composition_aa):
             elif aa == 'T': plt.plot(ind, values_aa, linewidth = 2 , color = 'r',marker= '*', label= 'polaire non charge (T)', zorder=2)
             elif aa == 'C': plt.plot(ind, values_aa, linewidth = 2 , color = 'r',marker= 'v', label= 'polaire non charge (C)', zorder=4)
             elif aa == 'P': plt.plot(ind, values_aa, linewidth = 2 , color = 'r',marker= '|', label= 'apolaire (P)', zorder=1)
-        plt.legend (my_handle,ncol = 3)
+            # plt.legend (ncol = 1)
+    # print (my_handle)
 
-        f = (ind+width)
-        f = sorted (f)
-        plt.grid(True)
-        plt.xlabel('Proteomes', fontsize=15, color='blue')
-        plt.ylabel('Frequence', fontsize=15, color='red')
-        plt.title('Distribution de la Frequence des aa dans les Proteomes', fontdict={'family': 'monospace'})
-        plt.xticks(f , fontsize=2)
-    my_handle, labels = plt.gca().get_legend_handles_labels()
-    zipper_leg = list(zip(labels, my_handle))
-    zipper_leg_sort = sorted (zipper_leg)
-    lab, h_aa = zip(*zipper_leg_sort)
-    print (lab)
-    l = plt.legend(h_aa, lab, ncol=3, loc='upper left', fontsize=8)
-    l.set_zorder(20)
+    f = (ind+width)
+    f = sorted (f)
+    plt.grid(True)
+    plt.xticks(f , fontsize=2)
+    plt.xlabel('Proteomes', fontsize=15, color='blue')
+    plt.ylabel('Frequence', fontsize=15, color='red')
+    plt.title('Distribution de la Frequence des aa dans les Proteomes', fontdict={'family': 'monospace'})
+    ncol = 3
+    for aa in liste_aa:
+        if aa in apolaire:
+            plt.legend(ncol = [i for i in range(ncol)])
+        if aa in apolaire:
+            plt.legend(ncol = [i+1 for i in range(ncol)])
+        if aa in apolaire:
+            plt.legend(ncol = [i+2 for i in range(ncol)])
+    # plt.legend(ncol = 1, loc='upper left', fontsize=8, title = 'apolaire')
+    # l = plt.legend(ncol=3, loc='upper left', fontsize=8)
+    # itertools.chain(*[aa[i::ncol] for i in range(ncol)])
     plt.show()
     # plt.savefig(aa+u'_Freqence.pdf')
 
 
-proteom_composition_aa = '/home/issa/Documents/STAGE/Results/proteome_composition_AA.csv'
+proteom_composition_aa = './old_/proteome_composition_AA.csv'
 frequence_aa = Freq_AA (proteom_composition_aa)

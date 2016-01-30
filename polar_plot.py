@@ -160,7 +160,7 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
         polaire = (['K', 'R', 'H', 'D', 'E', 'N', 'S', 'Q',  'T'])
         petit_apolaire = (['P', 'G', 'A', 'C'])
         list_lab = (hydrophobe, polaire, petit_apolaire)
-        colors = [ 'b', 'm', 'grey']
+        colors = [ 'b', 'r', 'k']
         for xtick, i in zip (ax.get_xticklabels(), list_aa):
 
             if i in hydrophobe:
@@ -180,7 +180,7 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
 
 
 if __name__ == "__main__":
-    proteom_composition_aa = 'proteome_composition_AA.csv'
+    proteom_composition_aa = './old_/proteome_composition_AA.csv'
     dico_aa = read_freq (proteom_composition_aa)
     amino = ['A', 'K', 'N', 'L']
     list_aa = ['V', 'I', 'L', 'M', 'F', 'W', 'Y', 'K', 'R', 'H', 'D', 'E', 'N', 'S', 'Q',  'T', 'P', 'G', 'A',
