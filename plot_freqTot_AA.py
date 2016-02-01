@@ -81,7 +81,9 @@ def Freq_AA (proteom_composition_aa):
         apolaire = ['A', 'G' , 'V', 'L', 'M', 'I', 'F', 'Y', 'W']
         polaire = ['D', 'E', 'K', 'R', 'H', 'N', 'Q']
         # filled_markers = ('o', 'v', '^', '<', '>', '8', 's', 'p', '*', 'h', 'H', 'D', 'd')
-
+        my_label_dico = { A:'apolaire (A)', G:'apolaire (G)', V:'Aliphatique (V)' , L:'Aliphatique (L)', M:'Hydrophobe fort(M)', I:'Aliphatique (I)', F:'aromatique (F)', Y:'aromatique (Y)', W:'aromatique (W)',
+            K:'Polaire charge positif (K)', R:'Polaire charge positif (R)', H:'Polaire charge positif (H)', D:'Polaire charge negatif (D)', E:'Polaire charge negatif (E)', H:'polaire non charge (N)', Q:'polaire non charge (Q)'
+            S:'polaire non charge (S)', T:'polaire non charge (T)', C:'polaire non charge (C)', P:'apolaire (P)'}
         if aa in apolaire:
             my_handle.append(aa)
             if aa == 'A': plt.plot(ind, values_aa, linewidth = 2 , color = 'purple',marker= '>', label= 'apolaire (A)')#, zorder=1)
@@ -99,9 +101,9 @@ def Freq_AA (proteom_composition_aa):
             elif aa == 'R': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= '*', label= 'Polaire charge positif (R)')#, zorder=2)
             elif aa == 'H': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= 'v', label= 'Polaire charge positif (H)')#, zorder=2)
             elif aa == 'D': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= '>', label= 'Polaire charge negatif (D)')#, zorder=2)
-            elif aa == 'E': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= '<', label= 'Polaire charge negatif (E)')#, zorder=2)
-            elif aa == 'N': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= 's', label= 'polaire non charge (N)')#, zorder=2)
-            elif aa == 'Q': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= 'd', label= 'polaire non charge (Q)')#, zorder=2)
+            elif aa == 'E': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= '<', label= 'Polaire charge negatif (E)')
+            elif aa == 'N': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= 's', label= 'polaire non charge (N)')
+            elif aa == 'Q': plt.plot(ind, values_aa, linewidth = 2 , color = 'green',marker= 'd', label= 'polaire non charge (Q)')
         elif aa in petit:
             my_handle.append(aa)
             if aa == 'S': plt.plot(ind, values_aa, linewidth = 2 , color = 'r',marker= 'o', label= 'polaire non charge (S)', zorder=3)

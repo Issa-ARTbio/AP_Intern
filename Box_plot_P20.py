@@ -42,7 +42,7 @@ def compute_length (dict_proteome):
 
 if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme est execute. Importe plus facilement les fonctions
 
-    proteome_dir = '/home/issa/Documents/STAGE/Data/Init_data/proteomes/'
+    proteome_dir = '/home/issa/Documents/STAGE/Init_data/proteomes/'
     out_file = 'outf.dat'
     l = os.listdir(proteome_dir)
 
