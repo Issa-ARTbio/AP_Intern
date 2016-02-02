@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-""" Renvoit deux polar_plots pour les frequences borders et les frequence bio
+""" Renvoit un polar_plot pour les frequences des acides amines dans la liste amino
+la liste amino correspond aux 3 aa avec les plus grandes variations de la frequence sur l'ensemble des 111 proteomes
+la Leucine (L) a ete rajoute car elle presente une freq plus importante dans tous les proteomes
 """
 
 import os, sys, argparse, re
@@ -33,22 +35,9 @@ def read_freq (proteom_composition_aa):
 
     return (dico_freq)
 
-def get_all_freq(proteome_name, dico_freq, list_aa):
-    """ return the list of AA frequencies for a particular proteome
-    """
-    list_freq = []
-
-    for aa in list_aa:
-        fr_aa = dico_freq[aa][proteome_name]
-        list_freq.append(fr_aa)
-
-    pass
-
-
 
 def get_name_min_med_max (dico_freq, amino, list_aa):
-    """renvoit le nom du proteome avec la frequence minimale de chaque aa present dans amino, avec une grande variation de la frequence de
-    Minimale, mediane, maximale
+    """renvoit le nom du proteome avec la frequence minimale, mediane et maximale de chaque aa present dans amino
     """
     freq_All_min, freq_All_med, freq_All_max = [], [], []
 
@@ -77,6 +66,7 @@ def get_name_min_med_max (dico_freq, amino, list_aa):
 
         name_max_proteome = key_trie [-1]
         my_dico_max[aa].append(name_max_proteome)
+        print (aa, name_min_proteome, val_trie[0],  name_med_proteome, val_trie[int(medium)],  name_max_proteome ,  val_trie[-1])
 
         for aa2 in list_aa:
 
@@ -142,34 +132,52 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
         data_max_s = list(data_max[1:])
         data_max_s.append(data_max_s[0])
 
-        ax.plot(rad, data_min_s,  color='r',linewidth=5,alpha= 0.3, label = data_min[0]+'\n Minimale', marker= '*')
+
+        # A Prochlorococcus_marinus_MIT9515 0.052763944272729624 Fischerella_muscicola_PCC_7414 0.08219473507646308 Synechococcus_sp_WH5701 0.11434684337252429
+
+        #  K Synechococcus_sp_WH5701 0.0216 67929809500178 Nodularia_spumigena_CCY9414 0.0484 7890822986619 Prochlorococcus_marinus_MIT9215 0.0871 7695568848365
+
+        # N Synechococcus_sp_WH5701 0.021664576332951036 Synechocystis_sp_PCC_7509 0.04383814914250497 Prochlorococcus_marinus_MIT9515 0.06562362370740592
+
+        # L Rivularia_sp_PCC_7116 0.1046 7297187323174 Microchaete_sp_PCC_7126 0.1100 5250461551017 Synechococcus_sp_WH5701 0.1319 4253482585394
+
+
+
+        ax.plot(rad, data_min_s,  color='r',linewidth=5,alpha= 0.3, label = data_min[0]+'\n Frequence Minimale = 0.1046', marker= '*')
         ax.fill (rad, data_min_s, color= 'r', alpha= 0.5)
 
-        ax.plot(rad, data_med_s,  color='b',linewidth=5,alpha= 0.3, label = data_med[0]+'\n Mediane', marker= 's')
+        ax.plot(rad, data_med_s,  color='b',linewidth=5,alpha= 0.3, label = data_med[0]+'\n Frequence Mediane = 0.11', marker= 's')
         ax.fill (rad, data_med_s, color= 'b', alpha= 0.5)
 
-        ax.plot(rad, data_max_s,  color='g',linewidth=5,alpha= 0.7, label = data_max[0]+'\n Maximale', marker= '>')
+        ax.plot(rad, data_max_s,  color='g',linewidth=5,alpha= 0.7, label = data_max[0]+'\n Frequence Maximale = 0.1319', marker= '>')
         ax.fill (rad, data_max_s,color= 'g', alpha= 0.5)
 
         plt.grid(True)
         rad = rad[:-1]
         ax.set_xticks(rad)
-        ax.set_rmax(0.15)
-        # ax.set_xticklabels (list_aa) #, color= 'b') #for i in ['A', 'K', 'N', 'L'] )
+        ax.set_rmax(0.16)
+
         hydrophobe = (['V', 'I', 'L', 'M', 'F', 'W', 'Y'])
         polaire = (['K', 'R', 'H', 'D', 'E', 'N', 'S', 'Q',  'T'])
         petit_apolaire = (['P', 'G', 'A', 'C'])
         list_lab = (hydrophobe, polaire, petit_apolaire)
         colors = [ 'b', 'r', 'k']
-        for xtick, i in zip (ax.get_xticklabels(), list_aa):
 
-            if i in hydrophobe:
-                xtick.set_color(colors[0])
-            if i in polaire:
-                xtick.set_color(colors[1])
+        for xtick, i in zip (ax.get_xticklabels(), list_aa):
             if i in petit_apolaire:
                 xtick.set_color(colors[2])
+            if i in polaire:
+                xtick.set_color(colors[1])
+            if i in hydrophobe:
+                xtick.set_color(colors[0])
                 ax.set_xticklabels(list_aa)
+
+                #Rendre gras un caractere du label
+                # if i == 'L':
+                    # xtick.set_color('purple')
+                    # xtick.set_weight(1000)
+                    # xtick.set_size('x-large')
+
         ax.set_title('Frequence des differents aa dans les proteomes\n avec une grande variation de la frequence de '+aa, va ='bottom', color = 'k', fontdict={'family': 'monospace'})
         ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.10),
   fancybox=True, shadow=True, ncol=3)
@@ -180,7 +188,7 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
 
 
 if __name__ == "__main__":
-    proteom_composition_aa = './old_/proteome_composition_AA.csv'
+    proteom_composition_aa = '/home/issa/Documents/STAGE/Results/proteome_composition_AA.csv'
     dico_aa = read_freq (proteom_composition_aa)
     amino = ['A', 'K', 'N', 'L']
     list_aa = ['V', 'I', 'L', 'M', 'F', 'W', 'Y', 'K', 'R', 'H', 'D', 'E', 'N', 'S', 'Q',  'T', 'P', 'G', 'A',
