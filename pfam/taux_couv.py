@@ -24,7 +24,6 @@ def read_fasta(path_proteome):
                 dict_proteome[name_protein] = 0
             else:
                 len_seq = len(line.strip())
-                # dict_proteome[name_protein] = dict_proteome.get(name_protein, 0) + len_seq
                 dict_proteome[name_protein] += len_seq
     # print (dict_proteome)
     return dict_proteome
@@ -32,7 +31,8 @@ def read_fasta(path_proteome):
 
 def read_pfam_outp (pfam_ouf):
     '''Description de la fonction : renvoit un dict pour :key = protein_id, value = [(start, stop)] du domaine trouve sur pfam
-    :un protein id est present en fonction du nombre de domaines qu'il porte '''
+    :un protein_id est present en fonction du nombre de domaines qu'il porte
+    '''
     pfam_dict = {}
     with open(pfam_ouf) as pf:
         for line in pf:
@@ -63,8 +63,8 @@ def long_couvert(pfam_dict):
 
     return len_domains
 
-def taux_couvert(dict_proteome, len_domains):
-    '''Description de la fonction: prend comme entrees deux dico avec les mm keys
+def pourc_proteome(dict_proteome, len_domains):
+    '''Description de la fonction: prend comme entrees deux dico avec les memes keys
     dans dict_proteome: values = len_fasta
     dans len_domains: values = len_domains
     renvoit:
@@ -90,10 +90,13 @@ def taux_couvert(dict_proteome, len_domains):
     print(taux)
     print(nmb_domain1,'sur',nmbr_prot)
     return taux, nmb_domain1, nmbr_prot
-        # else:
-        #     print( seq_id, 'No domain found in Pfam\n')
 
-# def taux_couvert_proteome():
+def pourc_residu():
+    ''' Calcul du pourcentage de resudue dans proteome
+    '''
+
+
+
 
 if __name__ == '__main__':
     path_proteome = 'example.fasta'
@@ -101,4 +104,4 @@ if __name__ == '__main__':
     pfam_output = 'Pfam_example.pfam'
     table_pfam_dict = read_pfam_outp(pfam_output)
     len_domainsTot = long_couvert(table_pfam_dict)
-    taux = taux_couvert(fasta, len_domainsTot)
+    taux = pourc_proteome(fasta, len_domainsTot)
