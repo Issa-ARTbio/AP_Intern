@@ -11,6 +11,7 @@ def read_fasta(path_proteome):
     ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = protein_name et val = sequence
     '''
     dict_proteome = {}
+    dico_prot_residues = {}
     with open(path_proteome) as f:
         for line in f:
             line = line.strip()
@@ -22,11 +23,13 @@ def read_fasta(path_proteome):
                     sys.exit(1)
 
                 dict_proteome[name_protein] = 0
+                dico_prot_residues = ""
             else:
                 len_seq = len(line.strip())
                 dict_proteome[name_protein] += len_seq
+                # dico_prot_residues[name_protein] += line.strip()
     # print (dict_proteome)
-    return dict_proteome
+    return dict_proteome , dico_prot_residues
 
 
 def read_pfam_outp (pfam_ouf):
@@ -91,12 +94,16 @@ def pourc_proteome(dict_proteome, len_domains):
     print(nmb_domain1,'sur',nmbr_prot)
     return taux, nmb_domain1, nmbr_prot
 
-def pourc_residu():
-    ''' Calcul du pourcentage de resudue dans proteome
-    '''
-
-
-
+# def pourc_residu(dico_prot_residues, pfam_dict):
+#     ''' Calcul du pourcentage de resudue dans proteome
+#     '''
+#
+#     for seq_id in dico_prot_residues:
+#         seq = dico_prot_residues[seq_id]
+#         values = pfam_dict[seq_id]
+#         for start, stop in values:
+#             residues_couvert = seq[start:stop]
+#             print(residues_couvert)
 
 if __name__ == '__main__':
     path_proteome = 'example.fasta'
