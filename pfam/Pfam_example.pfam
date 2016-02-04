@@ -1,0 +1,54 @@
+# pfam_scan.pl,  run at Thu Feb  4 12:54:24 2016
+#
+# Copyright (c) 2009 Genome Research Ltd
+# Freely distributed under the GNU 
+# General Public License
+#
+# Authors: Jaina Mistry (jaina@ebi.ac.uk), 
+#          Rob Finn (rdf@ebi.ac.uk)
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>. 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#      query sequence file: /home/issa/Documents/STAGE/Init_data/Proteomes_test/Gloeomargarita_lithophora.fasta
+#        searching against: /home/issa/database/data_pfam_R29//Pfam-A.hmm, with cut off --cut_ga
+#    resolve clan overlaps: on
+#     predict active sites: off
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#
+# <seq id> <alignment start> <alignment end> <envelope start> <envelope end> <hmm acc> <hmm name> <type> <hmm start> <hmm end> <hmm length> <bit score> <E-value> <significance> <clan>
+
+Sci_1_30561     31    200     31    201 PF02390.14  Methyltransf_4    Family     1   172   173    146.2   5.7e-43   1 CL0063   
+Sci_1_30556     57    211     51    213 PF00109.23  ketoacyl-synt     Domain    90   251   253     94.4   7.4e-27   1 CL0046   
+Sci_1_30556    217    328    217    329 PF02801.19  Ketoacyl-synt_C   Domain     1   117   118     74.5   5.9e-21   1 CL0046   
+Sci_1_30545     57    135     56    137 PF11760.5   CbiG_N            Domain     2    80    82     81.7   2.6e-23   1 No_clan  
+Sci_1_30545    142    226    142    226 PF11761.5   CbiG_mid          Domain     1    84    84     44.3   1.3e-11   1 No_clan  
+Sci_1_30545    229    345    229    345 PF01890.13  CbiG_C            Domain     1   116   116    134.9   1.6e-39   1 No_clan  
+Sci_1_30545    358    566    357    569 PF00590.17  TP_methylase      Domain     2   209   212    125.3   2.9e-36   1 No_clan  
+Sci_1_30525     40    210     21    216 PF01791.6   DeoC              Domain    41   229   235     36.0   4.9e-09   1 CL0036   
+Sci_1_30518      3    281      3    283 PF01430.16  HSP33             Family     1   265   267    265.3   5.2e-79   1 No_clan  
+Sci_1_30499      3    211      3    218 PF01370.18  Epimerase         Family     1   230   241     67.8   8.9e-19   1 CL0063   
+Sci_1_30499    245    291    245    291 PF08338.8   DUF1731           Family     1    47    47     60.9   6.6e-17   1 No_clan  
+Sci_1_30487     25    160     25    160 PF07176.8   DUF1400           Family     1   127   127     67.7     1e-18   1 CL0028   
+Sci_1_30480      4    112      3    113 PF00072.21  Response_reg      Domain     2   111   112     98.7   1.9e-28   1 CL0304   
+Sci_1_30480    147    220    145    221 PF00486.25  Trans_reg_C       Domain     2    76    77     70.2   1.1e-19   1 CL0123   
+Sci_1_30471     20    166     17    169 PF01327.18  Pep_deformylase   Domain     4   154   158    147.7   1.9e-43   1 No_clan  
+Sci_1_30440     72    183     60    185 PF03099.16  BPL_LplA_LipB     Domain    20   129   131     38.1   1.1e-09   1 CL0040   
+Sci_1_30431     14    430     12    430 PF06808.9   DctM              Family     3   416   416    355.6    3e-106   1 CL0182   
+Sci_1_30420     68    298     67    312 PF01040.15  UbiA              Family     2   236   252    156.1     9e-46   1 No_clan  
+Sci_1_30409     53    282     11    283 PF00664.20  ABC_membrane      Family    42   273   274     39.1   5.9e-10   1 CL0241   
+Sci_1_30409    352    485    350    486 PF00005.24  ABC_tran          Domain     3   136   137     96.6   1.6e-27   1 CL0023   
+Sci_1_30387      2    138      1    139 PF05685.9   Uma2              Family    29   171   172     51.3   8.4e-14   1 CL0236   
+Sci_1_30376      2     35      1     36 PF04255.11  DUF433            Domain    22    55    56     30.1     3e-07   1 CL0123   
+Sci_1_30370     86    223     85    223 PF05419.9   GUN4              Domain     2   140   140    160.4   2.5e-47   1 No_clan  
+Sci_1_30360      5    131      4    132 PF01242.16  PTPS              Domain     2   122   123     80.6     8e-23   1 CL0334   
+Sci_1_30360    138    269    137    271 PF01242.16  PTPS              Domain     2   121   123    111.9   1.7e-32   1 CL0334   
+
