@@ -2,13 +2,24 @@
 # -*- coding: utf-8 -*-
 
 
-''' Pour chaque proteome: calcul le taux de couverture pour chaque proteome
+''' Pour chaque proteome:
+    calcul le taux de couverture des domaines
+    et la frequence des proteines avec au moins 1 domaine present
+
+Parametres:
+
+-i dir (.fasta) dir (.pfam) -o []
+
+
+usage
+==============
+python taux_couv.py
 '''
 import os, sys,re
 
 
 def read_fasta(path_proteome):
-    ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = protein_name et val = sequence
+    ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = proteome_name et val = dict('protein_name': len_sequence)
     '''
     proteome_dict = {}
     with open(path_proteome) as f:
@@ -32,8 +43,8 @@ def read_fasta(path_proteome):
 
 
 def read_pfam_outp (path_pfam_ouf):
-    '''Description de la fonction : renvoit un dict pour :key = protein_id, value = [(start, stop)] du domaine trouve sur pfam
-    :un protein id est present en fonction du nombre de domaines qu'il porte '''
+    '''Description de la fonction : renvoit un dict pour :key = proteome_name, value = dict('protein_name':[(start, stop)]) du domaine trouve sur pfam
+    :NB: un protein_id est present en fonction du nombre de domaines qu'il porte '''
     all_pfam = {}
     with open(path_pfam_ouf) as pf:
         all_pfam.setdefault(filename, {})
@@ -54,7 +65,7 @@ def read_pfam_outp (path_pfam_ouf):
 
 def long_couvert(all_pfam):
     '''Description de la fonction: renvoit la longeur totale couvert par les domaines sur la proteine
-    :permet de passer de la redondance des protein_id à un seul id par protein
+    :NB: permet de passer de la redondance des protein_id de la fonction precedente à un seul id par protein et comme value : la couverture total des domaine/protein
     '''
     all_domains = {}
     for filename_pfam in all_pfam:
@@ -70,21 +81,18 @@ def long_couvert(all_pfam):
     return all_domains
 
 def taux_couvert(proteome_dict, all_domains):
-    '''Description de la fonction: prend comme entrees deux dico avec les mm keys
-    dans dict_proteome: values = len_fasta
-    dans len_domains: values = len_domains
+    '''Description de la fonction: prend comme entrees deux dico avec les mm keys = proteome name
+    dans proteome_dict : values = dict {'protein_name': seq_len}
+    dans all_domains: values = dict {'protein_name': len_domain}
     renvoit:
-    Taux de couvertures pour le proteomes
-    nombre de protein ayant au moins un domaine sur le nombre total de protein
+    Taux de couvertures pour les proteomes
+    Et la frequence de protein(ayant au moins un domaine) sur le nombre total de protein
     '''
     taux_proteome_couvert = {}
     freq_1domain = {}
     for filename_pfam, filename_fasta in zip (all_domains, proteome_dict):
         protein_dict = proteome_dict[filename_fasta]
         len_domains = all_domains[filename_pfam]
-        # print (filename_fasta, 'prot =',  'protein_dict')
-        # print (filename_pfam, 'domain =' , 'len_domains', '\n=================================')
-        #initialise les dicos pour le taux de couv de chaque proteome et la frequence du nbr de domaine = 1
         taux_proteome_couvert.setdefault(filename_fasta, 0)
         freq_1domain.setdefault(filename_pfam, 0)
         nmb_domain1 = 0
@@ -92,23 +100,26 @@ def taux_couvert(proteome_dict, all_domains):
         len_proteome_domain = 0
         len_proteome_fasta  = 0
 
-        for seq_id, dom_id in zip(protein_dict, len_domains):
+        for seq_id in protein_dict:
             nmbr_prot =nmbr_prot+ 1
             len_fasta = protein_dict[seq_id]
             len_proteome_fasta = len_proteome_fasta + int(len_fasta)
-
-            nmb_domain1 = nmb_domain1+1
-            ld = len_domains[dom_id]
-            len_proteome_domain = len_proteome_domain + int(ld)
+            if seq_id in len_domains:
+                nmb_domain1 = nmb_domain1+1
+                ld = len_domains[seq_id]
+                len_proteome_domain = len_proteome_domain + int(ld)
 
         taux = (len_proteome_domain/len_proteome_fasta)*100
         freq_domain1 = nmb_domain1/nmbr_prot
-        print (filename_fasta, 'prot =',  nmbr_prot)
-        print (filename_pfam, 'domain =' , nmb_domain1, '\n=================================')
+        # print (filename_fasta, 'prot =',  nmbr_prot)
+        # print (filename_pfam, 'domain =' , nmb_domain1, '\n=================================')
 
         taux_proteome_couvert[filename_fasta] = taux
         freq_1domain[filename_pfam] = freq_domain1
     return taux_proteome_couvert, freq_1domain
+
+
+# def plotting():
 
 
 if __name__ == '__main__':
@@ -123,8 +134,8 @@ if __name__ == '__main__':
         if filename.endswith('.fasta'):
             path_proteome = os.path.join(directory, filename)
             filename = filename.split('.')[0]
-            fasta = read_fasta (path_proteome)
-
+        fasta = read_fasta (path_proteome)
+####################Comment recuperer tous les proteomes de la variable fasta et les re-utiser sur la fonction taux_couvert a la derniere ligne
     for filename in list_pfam_out:
         if filename.endswith('.pfam'):
             path_pfam_ouf = os.path.join(pfam_out, filename)
