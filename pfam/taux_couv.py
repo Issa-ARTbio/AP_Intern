@@ -24,9 +24,8 @@ def read_fasta(path_proteome):
                 dict_proteome[name_protein] = 0
             else:
                 len_seq = len(line.strip())
-                # dict_proteome[name_protein] = dict_proteome.get(name_protein, 0) + len_seq
                 dict_proteome[name_protein] += len_seq
-    # print (dict_proteome)
+
     return dict_proteome
 
 
@@ -76,6 +75,7 @@ def taux_couvert(dict_proteome, len_domains):
     list_taux= []
     len_proteome_domain = 0
     len_proteome_fasta  = 0
+
     for seq_id in dict_proteome:
         nmbr_prot =nmbr_prot+ 1
         len_fasta = dict_proteome[seq_id]
@@ -86,14 +86,13 @@ def taux_couvert(dict_proteome, len_domains):
             list_taux.append(seq_id)
             ld = len_domains[seq_id]
             len_proteome_domain = len_proteome_domain + ld
+
     taux = (len_proteome_domain/len_proteome_fasta)*100
     print(taux)
     print(nmb_domain1,'sur',nmbr_prot)
     return taux, nmb_domain1, nmbr_prot
-        # else:
-        #     print( seq_id, 'No domain found in Pfam\n')
 
-# def taux_couvert_proteome():
+def plot_couvert():
 
 if __name__ == '__main__':
     path_proteome = 'example.fasta'
