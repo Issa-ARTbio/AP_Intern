@@ -1,0 +1,55 @@
+# pfam_scan.pl,  run at Fri Feb  5 01:40:18 2016
+#
+# Copyright (c) 2009 Genome Research Ltd
+# Freely distributed under the GNU 
+# General Public License
+#
+# Authors: Jaina Mistry (jaina@ebi.ac.uk), 
+#          Rob Finn (rdf@ebi.ac.uk)
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>. 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#      query sequence file: /home/issa/Documents/STAGE/Init_data/proteomes/Gloeobacter_kilaueensis_JS1.fasta
+#        searching against: /home/issa/database/data_pfam_R29//Pfam-A.hmm, with cut off --cut_ga
+#    resolve clan overlaps: on
+#     predict active sites: off
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#
+# <seq id> <alignment start> <alignment end> <envelope start> <envelope end> <hmm acc> <hmm name> <type> <hmm start> <hmm end> <hmm length> <bit score> <E-value> <significance> <clan>
+
+AGY56248.1      3     62      2     65 PF11638.5   DnaA_N            Domain     2    62    65     54.5   6.9e-15   1 CL0494   
+AGY56248.1    105    321    105    323 PF00308.15  Bac_DnaA          Domain     1   217   219    308.7   2.2e-92   1 CL0023   
+AGY56248.1    348    415    348    415 PF08299.8   Bac_DnaA_C        Domain     2    69    69     98.1     2e-28   1 CL0123   
+AGY56249.1     14    109     10    116 PF01571.18  GCV_T             Domain    51   150   257     28.9   6.2e-07   1 CL0289   
+AGY56249.1    198    281    198    285 PF08669.8   GCV_T_C           Domain     1    89    95     42.5   5.4e-11   1 No_clan  
+AGY56250.1     33    471     33    478 PF03023.11  MVIN              Family     1   443   452    317.0   1.5e-94   1 CL0222   
+AGY56251.1      1     78      1    184 PF13175.3   AAA_15            Domain     1    55   368     48.6   8.4e-13   1 CL0023   
+AGY56251.1    278    375    221    376 PF13304.3   AAA_21            Domain   220   301   304     71.1   1.2e-19   1 CL0023   
+AGY56252.1      9    186      8    187 PF14103.3   DUF4276           Family     2   183   184     41.5   1.5e-10   1 No_clan  
+AGY56253.1    419    624    416    626 PF00326.18  Peptidase_S9      Domain     4   210   212    152.9   7.3e-45   1 CL0028   
+AGY56255.1    105    222    104    228 PF03109.13  ABC1              Family     2   118   119    107.4   4.3e-31   1 CL0016   
+AGY56256.1      5     65      5     65 PF00462.21  Glutaredoxin      Domain     1    60    60     80.0     1e-22   1 CL0172   
+AGY56257.1      1    124      1    124 PF02951.11  GSH-S_N           Domain     1   119   119    120.3   4.3e-35   1 No_clan  
+AGY56257.1    128    300    128    301 PF02955.13  GSH-S_ATP         Domain     1   174   175    227.2   7.4e-68   1 CL0179   
+AGY56259.1      1    276      1    278 PF04107.10  GCS2              Family     5   289   291    198.9   9.7e-59   1 CL0286   
+AGY56260.1     40    140     36    141 PF00970.21  FAD_binding_6     Domain    13    97    99     23.5   4.7e-05   1 CL0076   
+AGY56260.1    153    263    153    265 PF00175.18  NAD_binding_1     Domain     1   107   109     96.1   1.6e-27   1 CL0091   
+AGY56261.1     10    188     10    191 PF00485.15  PRK               Domain     1   193   197    213.5   2.1e-63   1 CL0023   
+AGY56262.1     15    346     13    346 PF00456.18  Transketolase_N   Domain     3   334   334    515.4  4.9e-155   1 CL0254   
+AGY56262.1    362    533    361    535 PF02779.21  Transket_pyr      Domain     2   176   178    159.0   8.5e-47   1 CL0254   
+AGY56262.1    547    660    547    660 PF02780.17  Transketolase_C   Domain     1   124   124     39.1   5.2e-10   1 CL0591   
+AGY56263.1      3    103      3    104 PF00436.22  SSB               Domain     1   103   104     92.3   1.5e-26   1 CL0021   
+AGY56264.1      6    259      5    259 PF00795.19  CN_hydrolase      Family     2   261   261    214.0   2.1e-63   1 No_clan  
+AGY56266.1      4    108      4    109 PF13085.3   Fer2_3            Domain     1   108   109    120.2   3.3e-35   1 CL0486   
+AGY56266.1    144    216    142    216 PF13183.3   Fer4_8            Domain     3    66    66     39.6     5e-10   1 CL0344   
+AGY56267.1     10     91     10     92 PF02754.13  CCG               Family     1    84    85     58.2   6.4e-16   1 No_clan  
+AGY56267.1    156    245    155    245 PF02754.13  CCG               Family     2    85    85     57.2   1.4e-15   1 No_clan  

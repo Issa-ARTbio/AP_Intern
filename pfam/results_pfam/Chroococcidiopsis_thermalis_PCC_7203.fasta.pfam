@@ -1,0 +1,57 @@
+# pfam_scan.pl,  run at Thu Feb  4 16:27:03 2016
+#
+# Copyright (c) 2009 Genome Research Ltd
+# Freely distributed under the GNU 
+# General Public License
+#
+# Authors: Jaina Mistry (jaina@ebi.ac.uk), 
+#          Rob Finn (rdf@ebi.ac.uk)
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>. 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#      query sequence file: /home/issa/Documents/STAGE/Init_data/proteomes/Chroococcidiopsis_thermalis_PCC_7203.fasta
+#        searching against: /home/issa/database/data_pfam_R29//Pfam-A.hmm, with cut off --cut_ga
+#    resolve clan overlaps: on
+#     predict active sites: off
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#
+# <seq id> <alignment start> <alignment end> <envelope start> <envelope end> <hmm acc> <hmm name> <type> <hmm start> <hmm end> <hmm length> <bit score> <E-value> <significance> <clan>
+
+gi|428006995|gb|AFY85558.1|      7     68      6     69 PF11638.5   DnaA_N            Domain     2    64    65     58.7   3.4e-16   1 CL0494   
+gi|428006995|gb|AFY85558.1|    119    335    119    337 PF00308.15  Bac_DnaA          Domain     1   217   219    305.0   3.1e-91   1 CL0023   
+gi|428006995|gb|AFY85558.1|    362    429    361    429 PF08299.8   Bac_DnaA_C        Domain     2    69    69     99.5   7.4e-29   1 CL0123   
+gi|428006997|gb|AFY85560.1|    138    256    137    256 PF03109.13  ABC1              Family     2   119   119    129.6   5.7e-38   1 CL0016   
+gi|428006998|gb|AFY85561.1|      6     54      6     55 PF04485.9   NblA              Family     1    49    50     88.4   2.6e-25   1 No_clan  
+gi|428006999|gb|AFY85562.1|      6    238      4    241 PF02633.11  Creatininase      Family     3   205   208    198.8   7.3e-59   1 No_clan  
+gi|428007000|gb|AFY85563.1|     10    201      7    201 PF01081.16  Aldolase          Domain     5   196   196    160.3   3.3e-47   1 CL0036   
+gi|428007001|gb|AFY85564.1|     17     85     15     90 PF05239.13  PRC               Domain     4    74    79     62.7   2.3e-17   1 CL0350   
+gi|428007001|gb|AFY85564.1|    199    312    199    312 PF09557.7   DUF2382           Domain     1   111   111    112.1   1.4e-32   1 No_clan  
+gi|428007002|gb|AFY85565.1|    165    214    165    229 PF09557.7   DUF2382           Domain     1    52   111     20.9   0.00029   1 No_clan  
+gi|428007003|gb|AFY85566.1|      9    166      9    167 PF14306.3   PUA_2             Domain     1   158   159    186.2   2.8e-55   1 CL0178   
+gi|428007003|gb|AFY85566.1|    175    385    174    386 PF01747.14  ATP-sulfurylase   Domain     2   211   212    304.2   3.8e-91   1 CL0039   
+gi|428007004|gb|AFY85567.1|     42    320     42    324 PF00656.19  Peptidase_C14     Domain     1   243   248     83.1   2.6e-23   1 CL0093   
+gi|428007004|gb|AFY85567.1|    612    701    609    703 PF14326.3   DUF4384           Family     4    79    81     34.0   2.1e-08   1 No_clan  
+gi|428007006|gb|AFY85569.1|     83    283     82    288 PF01739.15  CheR              Domain     2   190   195    182.5   5.5e-54   1 CL0063   
+gi|428007006|gb|AFY85569.1|    367    415    366    427 PF13432.3   TPR_16            Family     2    53    68     32.1   1.3e-07   1 CL0020   
+gi|428007006|gb|AFY85569.1|    433    462    430    463 PF13181.3   TPR_8             Repeat     4    33    34     18.4    0.0016   1 CL0020   
+gi|428007007|gb|AFY85570.1|      9    245      8    246 PF01925.16  TauE              Family     2   235   236    166.6   6.4e-49   1 CL0292   
+gi|428007008|gb|AFY85571.1|    251    361    251    362 PF00072.21  Response_reg      Domain     1   111   112     82.4   2.2e-23   1 CL0304   
+gi|428007009|gb|AFY85572.1|      6    140      5    144 PF01584.16  CheW              Domain     2   134   138     79.3   1.8e-22   1 No_clan  
+gi|428007009|gb|AFY85572.1|    225    358    223    360 PF01584.16  CheW              Domain     3   136   138     88.6   2.4e-25   1 No_clan  
+gi|428007010|gb|AFY85573.1|      6     99      6    100 PF01627.20  Hpt               Family     1    84    85     54.9   7.1e-15   1 No_clan  
+gi|428007010|gb|AFY85573.1|    251    333    250    365 PF02895.11  H-kinase_dim      Domain     2    57    69     30.7   2.9e-07   1 CL0025   
+gi|428007010|gb|AFY85573.1|    414    553    412    554 PF02518.23  HATPase_c         Domain     4   109   110     63.0   3.2e-17   1 CL0025   
+gi|428007010|gb|AFY85573.1|    558    692    558    693 PF01584.16  CheW              Domain     1   137   138     61.6   5.4e-17   1 No_clan  
+gi|428007010|gb|AFY85573.1|    714    821    713    826 PF00072.21  Response_reg      Domain     2   107   112     78.0   5.1e-22   1 CL0304   
+gi|428007011|gb|AFY85574.1|     36    282     34    284 PF02743.15  dCache_1          Domain     3   247   249     72.4   4.5e-20   1 CL0165   
+gi|428007011|gb|AFY85574.1|    395    597    394    597 PF00015.18  MCPsignal         Family     2   204   207    150.8     4e-44   1 No_clan  
+gi|428007012|gb|AFY85575.1|      6    112      6    125 PF00072.21  Response_reg      Domain     1   104   112     79.8   1.5e-22   1 CL0304   

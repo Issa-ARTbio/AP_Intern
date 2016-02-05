@@ -1,0 +1,56 @@
+# pfam_scan.pl,  run at Fri Feb  5 05:26:35 2016
+#
+# Copyright (c) 2009 Genome Research Ltd
+# Freely distributed under the GNU 
+# General Public License
+#
+# Authors: Jaina Mistry (jaina@ebi.ac.uk), 
+#          Rob Finn (rdf@ebi.ac.uk)
+#
+# This is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <http://www.gnu.org/licenses/>. 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#      query sequence file: /home/issa/Documents/STAGE/Init_data/proteomes/Lyngbya_sp_PCC8106.fasta
+#        searching against: /home/issa/database/data_pfam_R29//Pfam-A.hmm, with cut off --cut_ga
+#    resolve clan overlaps: on
+#     predict active sites: off
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+#
+# <seq id> <alignment start> <alignment end> <envelope start> <envelope end> <hmm acc> <hmm name> <type> <hmm start> <hmm end> <hmm length> <bit score> <E-value> <significance> <clan>
+
+ZP_01624747.1      2    242      1    242 PF00154.18  RecA              Family    21   263   263    422.4  6.2e-127   1 CL0023   
+ZP_01624743.1      3    107      1    107 PF10184.6   DUF2358           Family     3   113   113    127.6   2.3e-37   1 CL0051   
+ZP_01624728.1     82    156     80    156 PF13424.3   TPR_12            Repeat     3    77    77     66.8   1.4e-18   1 CL0020   
+ZP_01624728.1    165    240    164    240 PF13424.3   TPR_12            Repeat     2    77    77     96.5   7.8e-28   1 CL0020   
+ZP_01624728.1    249    324    248    324 PF13424.3   TPR_12            Repeat     2    77    77     94.6   2.9e-27   1 CL0020   
+ZP_01624728.1    336    364    336    370 PF13176.3   TPR_7             Repeat     1    29    36     28.0   1.2e-06   1 CL0020   
+ZP_01624728.1    374    450    374    450 PF13424.3   TPR_12            Repeat     1    77    77     94.7   2.7e-27   1 CL0020   
+ZP_01624728.1    458    531    458    534 PF13424.3   TPR_12            Repeat     1    74    77     72.2   2.9e-20   1 CL0020   
+ZP_01624728.1    758   1098    757   1098 PF12770.4   CHAT              Domain     2   290   290    283.0   2.5e-84   1 CL0093   
+ZP_01624692.1      4    157      4    157 PF11791.5   Aconitase_B_N     Domain     1   153   153    206.1   2.6e-61   1 No_clan  
+ZP_01624692.1    169    377    169    377 PF06434.10  Aconitase_2_N     Family     1   204   204    318.5   1.5e-95   1 CL0364   
+ZP_01624692.1    465    811    400    811 PF00330.17  Aconitase         Family    99   458   458    138.6   2.6e-40   1 No_clan  
+ZP_01624679.1      8    407      4    408 PF06838.8   Met_gamma_lyase   Family     5   404   405    663.3  8.3e-200   1 CL0061   
+ZP_01624670.1     40    173     35    175 PF09334.8   tRNA-synt_1g      Family     6   137   391     67.7   7.3e-19   1 CL0039   
+ZP_01624670.1    223    407    222    408 PF13603.3   tRNA-synt_1_2     Domain     2   184   185    240.5   8.1e-72   1 CL0039   
+ZP_01624670.1    421    576    414    580 PF00133.19  tRNA-synt_1       Family   416   556   602     27.4     9e-07   1 CL0039   
+ZP_01624670.1    615    655    613    655 PF00133.19  tRNA-synt_1       Family   563   602   602     26.5   1.7e-06   1 CL0039   
+ZP_01624670.1    703    790    702    790 PF14159.3   CAAD              Domain     2    85    85     28.8   7.4e-07   1 No_clan  
+ZP_01624670.1    835    954    833    959 PF08264.10  Anticodon_1       Domain     3   148   152     83.4   1.4e-23   1 CL0258   
+ZP_01624617.1     86    355     86    358 PF07602.8   DUF1565           Family     1   242   247    159.3   9.2e-47   1 CL0268   
+ZP_01624617.1    382    422    380    422 PF00395.17  SLH               Family     3    45    45     55.0   5.5e-15   1 No_clan  
+ZP_01624617.1    439    478    439    480 PF00395.17  SLH               Family     1    41    45     50.7   1.3e-13   1 No_clan  
+ZP_01624617.1    502    546    501    546 PF00395.17  SLH               Family     2    45    45     20.7   0.00029   1 No_clan  
+ZP_01624614.1      4    228      1    232 PF01209.15  Ubie_methyltran   Family     6   229   233    173.1   5.2e-51   1 CL0063   
+ZP_01624605.1      3    129      1    131 PF02739.13  5_3_exonuc_N      Domain    40   157   159    114.6   3.6e-33   1 CL0280   
+ZP_01624605.1    132    225    132    227 PF01367.17  5_3_exonuc        Domain     1    95    97    110.5   4.2e-32   1 CL0464   
+ZP_01624605.1    309    497    308    497 PF01612.17  DNA_pol_A_exo1    Domain     2   175   175    119.1   1.6e-34   1 CL0219   
+ZP_01624605.1    530    925    529    925 PF00476.17  DNA_pol_A         Family     2   376   376    484.9  1.4e-145   1 No_clan  

@@ -181,7 +181,6 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
         ax.set_title('Frequence des differents aa dans les proteomes\n avec une grande variation de la frequence de '+aa, va ='bottom', color = 'k', fontdict={'family': 'monospace'})
         ax.legend(loc='upper center', bbox_to_anchor=(0.5, -0.10),
   fancybox=True, shadow=True, ncol=3)
-        # , label= 'b' if i == rad [0] else '')
         # fig.add_axes(ax)
         plt.show()
 
