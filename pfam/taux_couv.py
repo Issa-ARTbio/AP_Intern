@@ -16,7 +16,8 @@ usage
 python taux_couv.py
 '''
 import os, sys,re
-
+import matplotlib
+import matplotlib.pyplot as plt
 
 def read_fasta(path_proteome):
     ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = proteome_name et val = dict('protein_name': len_sequence)
@@ -90,37 +91,51 @@ def taux_couvert(proteome_dict, all_domains):
     '''
     taux_proteome_couvert = {}
     freq_1domain = {}
-    for filename_pfam, filename_fasta in zip (all_domains, proteome_dict):
-        protein_dict = proteome_dict[filename_fasta]
-        len_domains = all_domains[filename_pfam]
-        taux_proteome_couvert.setdefault(filename_fasta, 0)
-        freq_1domain.setdefault(filename_pfam, 0)
+    for proteome_name in proteome_dict:
+        #recupere les longeurs des sequences proteiques
+        protein_dict = proteome_dict[proteome_name]
+        taux_proteome_couvert.setdefault(proteome_name, 0)
+        #recupere les longeurs des sequences des domaines
+        len_domains = all_domains[proteome_name]
+        freq_1domain.setdefault(proteome_name, 0)
+
         nmb_domain1 = 0
         nmbr_prot = 0
         len_proteome_domain = 0
         len_proteome_fasta  = 0
-
+        #Calcul de la longueur totale pour chaque  proteome
         for seq_id in protein_dict:
             nmbr_prot =nmbr_prot+ 1
             len_fasta = protein_dict[seq_id]
             len_proteome_fasta = len_proteome_fasta + int(len_fasta)
-            if seq_id in len_domains:
+
+            for seq_id in len_domains:
                 nmb_domain1 = nmb_domain1+1
                 ld = len_domains[seq_id]
                 len_proteome_domain = len_proteome_domain + int(ld)
+        print(len_proteome_fasta)
 
         taux = (len_proteome_domain/len_proteome_fasta)*100
-        freq_domain1 = nmb_domain1/nmbr_prot
-        # print (filename_fasta, 'prot =',  nmbr_prot)
-        # print (filename_pfam, 'domain =' , nmb_domain1, '\n=================================')
-
-        taux_proteome_couvert[filename_fasta] = taux
-        freq_1domain[filename_pfam] = freq_domain1
+        freq_dom1 = nmb_domain1/nmbr_prot
+        taux_proteome_couvert[proteome_name] = taux
+        freq_1domain[proteome_name] = freq_dom1
     return taux_proteome_couvert, freq_1domain
 
 
-# def plotting():
-
+def plotting(taux_proteome_couvert, freq_1domain):
+    '''renvoit un histogramme pour le taux de couverture de proteome
+    Un histogramm pour la frequence de la presence d'un domaine
+    '''
+    list_de_taux = []
+    list_freq_domain1 = []
+    prot_name = []
+    for proteome_name in taux_proteome_couvert:
+        prot_name.append(prot_name)
+        taux = taux_proteome_couvert[proteome_name]
+        list_de_taux.append(taux)
+    for proteome_name in freq_1domain:
+        freq = freq_1domain[proteome_name]
+        list_freq_domain1.append(freq)
 
 if __name__ == '__main__':
 
@@ -129,18 +144,19 @@ if __name__ == '__main__':
 
     pfam_out = 'results_pfam/'
     list_pfam_out = os.listdir(pfam_out)
-
+    my_two_dict = [liste_fasta, list_pfam_out]
     for filename in liste_fasta:
         if filename.endswith('.fasta'):
             path_proteome = os.path.join(directory, filename)
             filename = filename.split('.')[0]
-        fasta = read_fasta (path_proteome)
-####################Comment recuperer tous les proteomes de la variable fasta et les re-utiser sur la fonction taux_couvert a la derniere ligne
+
     for filename in list_pfam_out:
         if filename.endswith('.pfam'):
             path_pfam_ouf = os.path.join(pfam_out, filename)
             filename = filename.split('.')[0]
 
-        table_pfam_dict = read_pfam_outp(path_pfam_ouf)
-        len_domainsTot = long_couvert(table_pfam_dict)
-        taux = taux_couvert(fasta, len_domainsTot)
+            fasta = read_fasta (path_proteome)
+            table_pfam_dict = read_pfam_outp(path_pfam_ouf)
+            len_domainsTot = long_couvert(table_pfam_dict)
+            taux_prot, taux_dom = taux_couvert(fasta, len_domainsTot)
+            plot_hist = plotting(taux_prot, taux_dom)
