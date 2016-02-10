@@ -150,7 +150,7 @@ def plotting(all_prot, all_dom):
     #     data_domain = list_domain1[i : i +30]
     #     name_proteome = list_prot_name[i : i +30]
 
-
+        #histogramme
     fig, ax = plt.subplots()
     N = len(list_prot_name)
     ind = np.arange(N)
