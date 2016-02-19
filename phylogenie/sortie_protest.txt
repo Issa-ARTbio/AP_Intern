@@ -1,0 +1,209 @@
+FASTA format detected.MSA read in FASTA format (Taxa = 111, Length =  364).WARNING: ID for sequence "Synechococcus_sp_PCC_7336|Syn7336_1727" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Cyanobacterium_YellowstoneA|CYA_1562" is longer than 10 characters. ID truncated to "Cyanobacte"WARNING: ID for sequence "Cyanobacterium_YellowstoneB|CYB_1067" is longer than 10 characters. ID truncated to "Cyanobacte"WARNING: ID for sequence "Cyanobacte" renamed to "Cyanobac_0".WARNING: ID for sequence "Gloeobacter_kilaueensis_JS1|AGY56270.1" is longer than 10 characters. ID truncated to "Gloeobacte"WARNING: ID for sequence "Gloeobacter_violaceus_PCC7421|NP_927206.1" is longer than 10 characters. ID truncated to "Gloeobacte"WARNING: ID for sequence "Gloeobacte" renamed to "Gloeobac_0".WARNING: ID for sequence "Synechococcus_sp_RCC307|YP_001227509.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_0".WARNING: ID for sequence "Synechococcus_sp_WH5701|ZP_01085634.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_1".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9215|YP_001484064.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochlorococcus_marinus_AS9601|YP_001009222.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_0".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9301|YP_001091053.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_1".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9312|YP_397273.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_2".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9515|YP_001011130.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_3".WARNING: ID for sequence "Prochlorococcus_marinus_CCMP1986|NP_892887.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_4".WARNING: ID for sequence "Prochlorococcus_marinus_NATL1A|YP_001014630.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_5".WARNING: ID for sequence "Prochlorococcus_marinus_NATL2A|YP_291370.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_6".WARNING: ID for sequence "Prochlorococcus_marinus_CCMP1375|NP_875234.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_7".WARNING: ID for sequence "Synechococcus_sp_CC9311|YP_730891.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_2".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9313|NP_894399.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_8".WARNING: ID for sequence "Prochlorococcus_marinus_MIT9303|YP_001017694.1" is longer than 10 characters. ID truncated to "Prochloroc"WARNING: ID for sequence "Prochloroc" renamed to "Prochlor_9".WARNING: ID for sequence "Synechococcus_sp_CC9902|YP_377235.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_3".WARNING: ID for sequence "Synechococcus_sp_WH7803|YP_001225021.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_4".WARNING: ID for sequence "Synechococcus_sp_CC9605|YP_381565.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_5".WARNING: ID for sequence "Synechococcus_sp_WH8102|NP_897211.1" is longer than 10 characters. ID truncated to "
+Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_6".WARNING: ID for sequence "Gloeomargarita_lithophora|Sci_1_30217" is longer than 10 characters. ID truncated to "Gloeomarga"WARNING: ID for sequence "Moorea_producens_3L|EGJ31541.1" is longer than 10 characters. ID truncated to "Moorea_pro"WARNING: ID for sequence "Synechococcus_sp_PCC_7335|WP_006455045.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_7".WARNING: ID for sequence "Leptolyngbya_sp_PCC_7375|Lepto7375DRAFT_2417" is longer than 10 characters. ID truncated to "Leptolyngb"WARNING: ID for sequence "Nodosilinea_nodulosa_PCC_7104|Lepto7104DRAFT_1397" is longer than 10 characters. ID truncated to "Nodosiline"WARNING: ID for sequence "Leptolyngbya_sp_PCC_6406|LEP6406DRAFT_3841" is longer than 10 characters. ID truncated to "Leptolyngb"WARNING: ID for sequence "Leptolyngb" renamed to "Leptolyn_0".WARNING: ID for sequence "Acaryochloris_sp_CCMEE_5410|WP_010471399.1" is longer than 10 characters. ID truncated to "Acaryochlo"WARNING: ID for sequence "Acaryochloris_marina_MBIC11017|YP_001516261.1" is longer than 10 characters. ID truncated to "Acaryochlo"WARNING: ID for sequence "Acaryochlo" renamed to "Acaryoch_0".WARNING: ID for sequence "Cyanothece_sp_PCC_7425|B8HM61.1" is longer than 10 characters. ID truncated to "Cyanothece"WARNING: ID for sequence "Thermosynechococcus_elongatus_BP1|NP_682077.1" is longer than 10 characters. ID truncated to "Thermosyne"WARNING: ID for sequence "Synechococcus_sp_PCC_6312|Syn6312_1597" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_8".WARNING: ID for sequence "Synechococcus_calcipolaris|Scaffold259_961" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synechoc_9".WARNING: ID for sequence "Synechococcus_elongatus_PCC7942|YP_399622.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synecho_10".WARNING: ID for sequence "Synechococcus_elongatus_PCC6301|YP_171631.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synecho_11".WARNING: ID for sequence "Synechocystis_sp_PCC6803|NP_443010.1" is longer than 10 characters. ID truncated to "Synechocys"WARNING: ID for sequence "Leptolyngbya_sp_PCC_7376|Lepto7376_4505" is longer than 10 characters. ID truncated to "Leptolyngb"WARNING: ID for sequence "Leptolyngb" renamed to "Leptolyn_1".WARNING: ID for sequence "Synechococcus_sp_PCC_7002|B1XLF1.1" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synecho_12".WARNING: ID for sequence "Rubidibacter_lacunae_KORDI_512|ERN41189.1" is longer than 10 characters. ID truncated to "Rubidibact"WARNING: ID for sequence "Trichodesmium_erythraeum|YP_723856.1" is longer than 10 characters. ID truncated to "Trichodesm"WARNING: ID for sequence "Halothece_sp_PCC_7418|PCC7418_2137" is longer than 10 characters. ID truncated to "Halothece_"WARNING: ID for sequence "Dactylococcopsis_salina_PCC_8305|Dacsa_0867" is longer than 10 characters. ID truncated to "Dactylococ"WARNING: ID for sequence "Geminocystis_herdmanii_PCC_6308|Syn6308DRAFT_3794" is longer than 10 characters. ID truncated to "Geminocyst"WARNING: ID for sequence "Cyanobacterium_stanieri_PCC_7202|Cyast_0104" is longer than 10 characters. ID truncated to "Cyanobacte"WARNING: ID for sequence "Cyanobacte" renamed to "Cyanobac_1".WARNING: ID for sequence "Coleofasciculus_chthonoplastes_PCC_7420|EDX72758.1" is longer than 10 characters. ID truncated to "Coleofasci"WARNING: ID for sequence "Spirulina_subsalsa_PCC_9445|Spi9445_4077" is longer than 10 characters. ID truncated to "Spirulina_"WARNING: ID for sequence "Spirulina_major_PCC_6313|Spi6313_3219" is longer than 10 characters. ID truncated to "Spirulina_"WARNING: ID for sequence "Spirulina_" renamed to "Spirulin_0".WARNING: ID for sequence "Arthrospira_platensis_
+NIES39|YP_005068635.1" is longer than 10 characters. ID truncated to "Arthrospir"WARNING: ID for sequence "Arthrospira_platensis_Paraca|EKN79713.1" is longer than 10 characters. ID truncated to "Arthrospir"WARNING: ID for sequence "Arthrospir" renamed to "Arthrosp_0".WARNING: ID for sequence "Arthrospira_maxima_CS328|EDZ92780.1" is longer than 10 characters. ID truncated to "Arthrospir"WARNING: ID for sequence "Arthrospir" renamed to "Arthrosp_1".WARNING: ID for sequence "Chroococcidiopsis_thermalis_PCC_7203|AFY86457.1" is longer than 10 characters. ID truncated to "Chroococci"WARNING: ID for sequence "Gloeocapsa_sp_PCC_73106|GLO73106DRAFT_00028020" is longer than 10 characters. ID truncated to "Gloeocapsa"WARNING: ID for sequence "Rivularia_sp_PCC_7116|Riv7116_2808" is longer than 10 characters. ID truncated to "Rivularia_"WARNING: ID for sequence "Richelia_intracellularis_HH01|CCH67284.1" is longer than 10 characters. ID truncated to "Richelia_i"WARNING: ID for sequence "Lyngbya_sp_PCC8106|ZP_01622713.1" is longer than 10 characters. ID truncated to "Lyngbya_sp"WARNING: ID for sequence "Geitlerinema_sp_PCC_7407|AFY66019.1" is longer than 10 characters. ID truncated to "Geitlerine"WARNING: ID for sequence "Oscillatoria_acuminata_PCC_6304|Oscil6304_0898" is longer than 10 characters. ID truncated to "Oscillator"WARNING: ID for sequence "Oscillatoria_sp_PCC_7112|Osc7112_2498" is longer than 10 characters. ID truncated to "Oscillator"WARNING: ID for sequence "Oscillator" renamed to "Oscillat_0".WARNING: ID for sequence "Microcoleus_vaginatus_FGP2|EGK84471.1" is longer than 10 characters. ID truncated to "Microcoleu"WARNING: ID for sequence "Oscillatoria_sp_PCC_10802|Osc10802DRAFT_6792" is longer than 10 characters. ID truncated to "Oscillator"WARNING: ID for sequence "Oscillator" renamed to "Oscillat_1".WARNING: ID for sequence "Oscillatoria_sp_PCC_6506|CBN55342.1" is longer than 10 characters. ID truncated to "Oscillator"WARNING: ID for sequence "Oscillator" renamed to "Oscillat_2".WARNING: ID for sequence "Oscillatoria_sp_PCC_6407|Oscil6407DRAFT_00022090" is longer than 10 characters. ID truncated to "Oscillator"WARNING: ID for sequence "Oscillator" renamed to "Oscillat_3".WARNING: ID for sequence "Leptolyngbya_boryana_PCC_6306|LepboDRAFT_3614" is longer than 10 characters. ID truncated to "Leptolyngb"WARNING: ID for sequence "Leptolyngb" renamed to "Leptolyn_2".WARNING: ID for sequence "Microcoleus_sp_PCC_7113|Mic7113_2805" is longer than 10 characters. ID truncated to "Microcoleu"WARNING: ID for sequence "Microcoleu" renamed to "Microcol_0".WARNING: ID for sequence "Gloeocapsa_sp_PCC_7428|Glo7428_2679" is longer than 10 characters. ID truncated to "Gloeocapsa"WARNING: ID for sequence "Gloeocapsa" renamed to "Gloeocap_0".WARNING: ID for sequence "Synechocystis_sp_PCC_7509|SYN7509DRAFT_0522" is longer than 10 characters. ID truncated to "Synechocys"WARNING: ID for sequence "Synechocys" renamed to "Synecho_13".WARNING: ID for sequence "Tolypothrix_sp_PCC_9009|Tol9009DRAFT_00055530" is longer than 10 characters. ID truncated to "Tolypothri"WARNING: ID for sequence "Calothrix_sp_PCC_6303|Cal6303_4611" is longer than 10 characters. ID truncated to "Calothrix_"WARNING: ID for sequence "Nodularia_spumigena_CCY9414|ZP_01628617.1" is longer than 10 characters. ID truncated to "Nodularia_"WARNING: ID for sequence "Nostoc_punctiforme|YP_001869319.1" is longer than 10 characters. ID truncated to "Nostoc_pun"WARNING: ID for sequence "Microchaete_sp_PCC_7126|Mic7126DRAFT_3050" is longer than 10 characters. ID truncated to "Microchaet"WARNING: ID for sequence "Calothrix_sp_PCC_7507|Cal7507_2978" is longer than 10 characters. ID truncated to "Calothrix_"WARNING: ID for sequence "Calothrix_" renamed to "Calothri_0".WARNING: ID for sequence "Cylindrospermopsis_raciborskii_CS505|EFA70674.1" is longer than 10 characters. ID truncated to "Cylindrosp"WARNING: ID for sequence "Raphidiopsis_brookii_D9|EFA74309.1" is longer than 10 characters. ID truncated to "Raphidiops"WARNING: ID for sequence "Nostoc_sp_PCC_7107|Nos7107_3647" is longer than
+10 characters. ID truncated to "Nostoc_sp_"WARNING: ID for sequence "Nostoc_sp_PCC_7524|Nos7524_3885" is longer than 10 characters. ID truncated to "Nostoc_sp_"WARNING: ID for sequence "Nostoc_sp_" renamed to "Nostoc_s_0".WARNING: ID for sequence "Anabaena_variabilis|YP_322537.1" is longer than 10 characters. ID truncated to "Anabaena_v"WARNING: ID for sequence "Nostoc_sp_PCC7120|NP_488685.1" is longer than 10 characters. ID truncated to "Nostoc_sp_"WARNING: ID for sequence "Nostoc_sp_" renamed to "Nostoc_s_1".WARNING: ID for sequence "Cylindrospermum_stagnale_PCC_7417|CylstDRAFT_3527" is longer than 10 characters. ID truncated to "Cylindrosp"WARNING: ID for sequence "Cylindrosp" renamed to "Cylindro_0".WARNING: ID for sequence "Anabaena_sp_PCC_7108|Ana7108_0021" is longer than 10 characters. ID truncated to "Anabaena_s"WARNING: ID for sequence "Trichormus_azollae_0708|YP_003722981.1" is longer than 10 characters. ID truncated to "Trichormus"WARNING: ID for sequence "Anabaena_cylindrica_PCC_7122|Anacy_3317" is longer than 10 characters. ID truncated to "Anabaena_c"WARNING: ID for sequence "Fischerella_sp_PCC_9605|FIS9605DRAFT_05280" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerella_sp_JSC11|EHC17928.1" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_0".WARNING: ID for sequence "Fischerella_thermalis_PCC_7521|WP_009455270.1" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_1".WARNING: ID for sequence "Fischerella_muscicola_PCC_7414|WP_016867365.1" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_2".WARNING: ID for sequence "Fischerella_sp_PCC_9431|Fis9431DRAFT_2121" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_3".WARNING: ID for sequence "Fischerella_sp_PCC_9339|WP_017310811.1" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_4".WARNING: ID for sequence "Fischerella_muscicola_PCC_73103|WP_016862117.1" is longer than 10 characters. ID truncated to "Fischerell"WARNING: ID for sequence "Fischerell" renamed to "Fischere_5".WARNING: ID for sequence "Chlorogloeopsis_fritschii_PCC_6912|WP_016874386.1" is longer than 10 characters. ID truncated to "Chlorogloe"WARNING: ID for sequence "Chlorogloeopsis_fritschii_PCC_9212|WP_016874386.1" is longer than 10 characters. ID truncated to "Chlorogloe"WARNING: ID for sequence "Chlorogloe" renamed to "Chlorogl_0".WARNING: ID for sequence "cyanobacterium_PCC_7702|WP_017321870.1" is longer than 10 characters. ID truncated to "cyanobacte"WARNING: ID for sequence "Mastigocladopsis_repens_PCC_10914|Mas10914DRAFT_4276" is longer than 10 characters. ID truncated to "Mastigocla"WARNING: ID for sequence "Scytonema_hofmanni_PCC_7110|WP_017744505.1" is longer than 10 characters. ID truncated to "Scytonema_"WARNING: ID for sequence "Cyanothece_sp_PCC_8801|B7K5U7.1" is longer than 10 characters. ID truncated to "Cyanothece"WARNING: ID for sequence "Cyanothece" renamed to "Cyanothe_0".WARNING: ID for sequence "Crocosphaera_watsonii_WH8501|ZP_00518084.1" is longer than 10 characters. ID truncated to "Crocosphae"WARNING: ID for sequence "Cyanothece_sp_CCY0110|ZP_01731458.1" is longer than 10 characters. ID truncated to "Cyanothece"WARNING: ID for sequence "Cyanothece" renamed to "Cyanothe_1".WARNING: ID for sequence "Cyanothece_sp_ATCC_51472|EHC21446.1" is longer than 10 characters. ID truncated to "Cyanothece"WARNING: ID for sequence "Cyanothece" renamed to "Cyanothe_2".WARNING: ID for sequence "Cyanothece_sp_ATCC51142|YP_001802404.1" is longer than 10 characters. ID truncated to "Cyanothece"WARNING: ID for sequence "Cyanothece" renamed to "Cyanothe_3".WARNING: ID for sequence "Microcystis_aeruginosa_PCC_7806|CAO90294.1" is longer than 10 characters. ID truncated to "Microcysti"WARNING: ID for sequence "Microcystis_
+aeruginosa_NIES843|YP_001657819.1" is longer than 10 characters. ID truncated to "Microcysti"WARNING: ID for sequence "Microcysti" renamed to "Microcys_0".WARNING: ID for sequence "Pleurocapsa_sp_PCC_7327|Ple7327_3246" is longer than 10 characters. ID truncated to "Pleurocaps"WARNING: ID for sequence "Pleurocapsa_sp_PCC_7319|Pleur7313DRAFT_01111" is longer than 10 characters. ID truncated to "Pleurocaps"WARNING: ID for sequence "Pleurocaps" renamed to "Pleuroca_0".WARNING: ID for sequence "Stanieria_sp_PCC_7437|Sta7437_4128" is longer than 10 characters. ID truncated to "Stanieria_"WARNING: ID for sequence "Chroococcidiopsis_sp_PCC_6712|Chr6712_1483" is longer than 10 characters. ID truncated to "Chroococci"WARNING: ID for sequence "Chroococci" renamed to "Chroococ_0".WARNING: ID for sequence "Pseudanabaena_sp_PCC_7429|Pse7429DRAFT_3755" is longer than 10 characters. ID truncated to "Pseudanaba"WARNING: ID for sequence "Pseudanabaena_sp_PCC_7367|Pse7367_3410" is longer than 10 characters. ID truncated to "Pseudanaba"WARNING: ID for sequence "Pseudanaba" renamed to "Pseudana_0".WARNING: ID for sequence "Pseudanabaena_sp_PCC_6802|Pse6802_3732" is longer than 10 characters. ID truncated to "Pseudanaba"WARNING: ID for sequence "Pseudanaba" renamed to "Pseudana_1".WARNING: ID for sequence "Synechococcus_sp_PCC_7502|Syn7502_03012" is longer than 10 characters. ID truncated to "Synechococ"WARNING: ID for sequence "Synechococ" renamed to "Synecho_14".MSA successfully converted to PHYLIP format!
+
+
+ProtTest 3.4.1                      Fast selection of the best-fit models of protein evolution
+(c) 2009-2010   Diego Darriba (1,2), Guillermo Taboada (2), Ramón Doallo (2), David Posada (1)
+(1)                               Facultad de Biologia, Universidad de Vigo, 36200 Vigo, Spain
+(2)                    Facultade de Informática, Universidade da Coruña, 15071 A Coruña, Spain
+Contact:                                                     ddarriba@udc.es, dposada@uvigo.es
+----------------------------------------------------------------------------------------------
+
+Wed Feb 17 16:21:46 CET 2016
+OS = Linux (3.19.0-43-generic)
+
+Citation: Darriba D, Taboada GL, Doallo R, Posada D. ProtTest 3: fast selection of best-fit
+          models of protein evolution. Bioinformatics, 27:1164-1165, 2011
+
+
+ProtTest options
+----------------
+  Alignment file........... : /home/issa/Documents/stage/muscle/Gblock_results/cluster_44.fasta.aln-gb
+  Tree..................... : BioNJ
+  StrategyMode............. : Fixed BIONJ JTT
+  Candidate models......... :
+    Matrices............... : JTT LG DCMut MtREV MtMam MtArt Dayhoff WAG RtREV CpREV Blosum62 VT HIVb HIVw FLU
+    Distributions.......... : Uniform
+    Observed frequencies... : false
+
+  Statistical framework
+    Sort models according to....:
+       BIC
+    Sample size.................: 364.0 (not calculated yet)
+  Other options:
+    Display best tree in ASCII..: false
+    Display best tree in Newick.: false
+    Display consensus tree......: false
+    Verbose.....................: false
+
+**********************************************************
+Observed number of invariant sites: 109
+Observed aminoacid frequencies:
+ A: 0.076    C: 0.013    D: 0.068    E: 0.058    F: 0.042
+ G: 0.067    H: 0.015    I: 0.099    K: 0.050    L: 0.082
+ M: 0.018    N: 0.041    P: 0.037    Q: 0.038    R: 0.059
+ S: 0.058    T: 0.051    V: 0.070    W: 0.011    Y: 0.044
+
+**********************************************************
+
+Model................................ : JTT
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19973.82
+     (seconds))
+
+Model................................ : LG
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19758.90
+     (seconds))
+
+Model................................ : DCMut
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19954.99
+     (seconds))
+
+Model................................ : MtREV
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 21264.79
+     (seconds))
+
+Model................................ : MtMam
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 22172.80
+     (seconds))
+
+Model................................ : MtArt
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 21989.02
+     (seconds))
+
+Model................................ : Dayhoff
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19952.23
+     (seconds))
+
+Model................................ : WAG
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19806.62
+     (seconds))
+
+Model................................ : RtREV
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 20033.85
+     (seconds))
+
+Model................................ : CpREV
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19871.33
+     (seconds))
+
+Model................................ : Blosum62
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 20204.89
+     (seconds))
+
+Model................................ : VT
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 19984.18
+     (seconds))
+
+Model................................ : HIVb
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 20921.45
+     (seconds))
+
+Model................................ : HIVw
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 21688.26
+     (seconds))
+
+Model................................ : FLU
+  Number of parameters............... : 219 (0 + 219 branch length estimates)
+ -lnL................................ = 20558.81
+     (seconds))
+
+************************************************************
+Date   :  Wed Feb 17 16:22:39 CET 2016
+Runtime:  0h:00:50
+
+
+
+***************************************************************************
+Best model according to BIC: LG
+Confidence Interval: 100.0
+***************************************************************************
+Model          deltaBIC       BIC            BICw           -lnL
+---------------------------------------------------------------------------
+LG             0.00           40809.28       1.00           19758.90
+WAG            95.43          40904.71       0.00           19806.62
+CpREV          224.86         41034.13       0.00           19871.33
+Dayhoff        386.66         41195.94       0.00           19952.23
+DCMut          392.18         41201.46       0.00           19954.99
+JTT            429.83         41239.11       0.00           19973.82
+VT             450.57         41259.84       0.00           19984.18
+RtREV          549.90         41359.18       0.00           20033.85
+Blosum62       891.98         41701.26       0.00           20204.89
+FLU            1599.82        42409.09       0.00           20558.81
+HIVb           2325.10        43134.38       0.00           20921.45
+MtREV          3011.79        43821.07       0.00           21264.79
+HIVw           3858.72        44668.00       0.00           21688.26
+MtArt          4460.23        45269.51       0.00           21989.02
+MtMam          4827.81        45637.08       0.00           22172.80
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+***********************************************
+Relative importance of parameters
+***********************************************
+  alpha       (+G):     No +G models
+  p-inv       (+I):     No +I models
+  alpha+p-inv (+I+G):   No +I+G models
+  freqs       (+F):     No +F models
+
+***********************************************
+Model-averaged estimate of parameters
+***********************************************
+  alpha (+G):           No +G models
+  p-inv (+I):           No +I models
+  alpha (+I+G):         No +I+G models
+  p-inv (+I+G):         No +I+G models
+
+***************************************************************************
+Best model according to LnL: LG
+Confidence Interval: 100.0
+***************************************************************************
+Model          deltaLnL       LnL            LnLw           -lnL
+---------------------------------------------------------------------------
+LG             0.00           19758.90       1.00           19758.90
+WAG            47.72          19806.62       0.00           19806.62
+CpREV          112.43         19871.33       0.00           19871.33
+Dayhoff        193.33         19952.23       0.00           19952.23
+DCMut          196.09         19954.99       0.00           19954.99
+JTT            214.92         19973.82       0.00           19973.82
+VT             225.28         19984.18       0.00           19984.18
+RtREV          274.95         20033.85       0.00           20033.85
+Blosum62       445.99         20204.89       0.00           20204.89
+FLU            799.91         20558.81       0.00           20558.81
+HIVb           1162.55        20921.45       0.00           20921.45
+MtREV          1505.89        21264.79       0.00           21264.79
+HIVw           1929.36        21688.26       0.00           21688.26
+MtArt          2230.12        21989.02       0.00           21989.02
+MtMam          2413.90        22172.80       0.00           22172.80
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+***********************************************
+Relative importance of parameters
+***********************************************
+  alpha       (+G):     No +G models
+  p-inv       (+I):     No +I models
+  alpha+p-inv (+I+G):   No +I+G models
+  freqs       (+F):     No +F models
+
+***********************************************
+Model-averaged estimate of parameters
+***********************************************
+  alpha (+G):           No +G models
+  p-inv (+I):           No +I models
+  alpha (+I+G):         No +I+G models
+  p-inv (+I+G):         No +I+G models
