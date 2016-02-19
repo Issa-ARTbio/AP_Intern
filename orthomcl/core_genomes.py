@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-#by T-B-F (https://github.com/T-B-F/myBio/blob/master/scripts/remove_paralogous.py)
+#   by T-B-F (https://github.com/T-B-F/myBio/blob/master/scripts/remove_paralogous.py)
 """
 script to remove paralogous proteins from the list of orthologous.
 For each potential paralogous proteins, compare the blast scores of each of them with the other proteins
