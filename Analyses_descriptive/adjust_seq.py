@@ -12,7 +12,6 @@ python adjust_seq.py
 import os, sys, argparse
 import subprocess
 
-
 def adjust_name (proteome_dir, out_dir):
     ''' Description de la fonction : lit et creer en mmeme temps un dossier avec des fichiers fasta et renvoit dans le dossier de sortie les fasta noms des fichiers formattes
     '''
