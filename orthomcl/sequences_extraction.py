@@ -38,7 +38,8 @@ def read_All_fasta(directory, liste_fasta):
     return dict_proteome
 
 def extract_sequence(dict_proteome,core, cluster):
-
+    """ Write fasta sequences in a output file
+    """
     nb = 0
     for line in open(core):
         nb+=1
@@ -59,7 +60,7 @@ if __name__ == '__main__':
     core= '/home/issa/Documents/stage/orthomcl/orthomcl_results/new_groups.txt'
     # all_fasta='/home/issa/Documents/stage/init_data/CyanobacteriaProteins.fas'
     cluster= '/home/issa/Documents/stage/orthomcl/orthomcl_results/core_cluster/cluster_'
-    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format/'
+    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format_shortname/'
     liste_fasta = os.listdir(directory)
     all_fasta = read_All_fasta(directory, liste_fasta)
     extract_sequence (all_fasta, core, cluster)

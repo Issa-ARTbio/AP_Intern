@@ -29,7 +29,7 @@ def read_file (prottest_outf, model_retrieve):
     cluster_mod = []
     for cluster in dico:
 
-        if dico[cluster] == 'LG':
+        if dico[cluster] == 'VT':
             cluster_mod.append(cluster)
             print(cluster)
             # DAYHOFF, DCMUT, JTT, MTREV, WAG, RTREV, CPREV, VT, BLOSUM62, MTMAM, LG, MTART, MTZOA, PMB, HIVB, HIVW, JTTDCMUT, FLU, GTR
