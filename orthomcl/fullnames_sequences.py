@@ -8,7 +8,6 @@
 
 
 import sys, os, re
-# from sequences_extraction import read_All_fasta
 
 def read_All_fasta(directory, liste_fasta):
     '''extract fasta sequence corresponding to the names in core file
@@ -60,6 +59,7 @@ def give_full_name(liste_fasta, proteomes_name):
 def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
 
     with open(cluster_in, 'r') as cluster, open(cluster_out, 'w' ) as outfile:
+
         for line in cluster:
             line = line.strip()
             if line.startswith('>'):
@@ -72,7 +72,6 @@ def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
                 seq = line.strip()
 
                 name = match_name[proteome_id]+"|"+protein_name
-                print()
                 tmpr = name.split('|')
                 if name in all_fasta:
                     # print(name)
@@ -99,17 +98,17 @@ def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
                     # Error cannot find name Rubidibacter_lacunae_KORDI_512|ERN40473.1
                     # Error cannot find name Chroococcidiopsis_thermalis_PCC_7203|AFY90625.1
 
-        print("==============================")
+        print("Fasta writing")
 
 if __name__ == '__main__':
     directory = '/home/issa/Documents/stage/init_data/proteomes/'
     liste_fasta = os.listdir(directory)
     all_fasta   = read_All_fasta(directory, liste_fasta)
-    cluster_out = '/home/issa/Documents/stage/orthomcl/orthomcl_results/core_to_align/'
-    cluster_dir = '/home/issa/Documents/stage/orthomcl/orthomcl_results/core_cluster_shortname/'
+    cluster_out = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/cluster_biom_plus/'
+    cluster_dir = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/cluster_Biom_Plus'
     clusters    =  os.listdir(cluster_dir)
 
-    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format/'
+    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format_shortname/'
     liste_fa = os.listdir(directory)
     proteomes_name=[]
     for filename in liste_fa:

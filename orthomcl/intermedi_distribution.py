@@ -60,11 +60,11 @@ def plotting(dict_cluster):
         fig, ax = plt.subplots()
         N = len(cluster_lab)
         ind = np.arange(N)
-        width = 0.35
+        width = 0.25
 
-        dom = ax.bar(ind, cluster_values, width=0.6, alpha=0.4, color='k')
+        dom = ax.bar(ind, cluster_values, width=0.1, alpha=0.4, color='k')
         ax.set_xlim(-width,len(ind)+width)
-        ax.set_xticks(ind+width)
+        ax.set_xticks(ind)
 
         ax.set_xticklabels (cluster_lab, rotation='vertical', fontsize=10)
 
@@ -78,7 +78,7 @@ def plotting(dict_cluster):
 
 if __name__ == '__main__':
 
-    directory = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/seq_full_names/'
+    directory = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/seq_full_names/half_interm_clusters/'
     liste_cluster =  os.listdir(directory)
     my_cluster = count_fasta_header(directory, liste_cluster)
     plotting (my_cluster)

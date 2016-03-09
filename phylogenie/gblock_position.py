@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-'''Represente la distribution de différence de position dans la sortie Gblocks
+'''Represente la distribution de difference de position dans la sortie Gblocks
 '''
 
 import os, sys,re

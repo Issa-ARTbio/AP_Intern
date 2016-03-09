@@ -20,5 +20,5 @@ for line in t:
 gb = Tree(tree_Gblock)
 tr = Tree(t_trimal)
 print (tr)
-# rf, max_rf, common_leaves, parts_t1, parts_t2 = gb.robinson_foulds(tr)
-# print ("RF distance is %s over a total of %s" %(rf, max_rf))
+rf, max_rf, common_leaves, parts_t1, parts_t2 = gb.robinson_foulds(tr)
+print ("RF distance is %s over a total of %s" %(rf, max_rf))
