@@ -27,7 +27,6 @@ def read_freq (proteom_composition_aa):
             tmp = line.split('\t')
             proteome_name = tmp[0]
             proteome_name = proteome_name.split('.')[0]
-            # print(proteome_name)
             values = tmp[1:]
             for i, val in enumerate (values):
                 dico_freq.setdefault (liste_aa[i], dict())
@@ -50,13 +49,11 @@ def get_name_min_med_max (dico_freq, amino, list_aa):
         my_dico_min[aa] = []
         my_dico_med[aa] = []
         my_dico_max[aa] = []
-        # name_min_proteome, name_med_proteome, name_max_proteome = None, None, None
         data_aa = dico_freq[aa]
         proteome_name, values_aa = zip(*data_aa.items())
         zipper = list(zip(values_aa, proteome_name))
         zipper_sort = sorted(zipper)
         val_trie, key_trie = zip(*zipper_sort)
-        # print (key_trie , val_trie)
         medium = len(val_trie)/2 + 0.5
         name_min_proteome = key_trie [0]
         my_dico_min[aa].append(name_min_proteome)
@@ -81,7 +78,6 @@ def get_name_min_med_max (dico_freq, amino, list_aa):
             if name_med_proteome in data_aa:
                 fr = dico_freq[aa2][name_max_proteome]
                 my_dico_max[aa].append(fr)
-    # print ('my_dico_min', my_dico_min, 'my_dico_med',my_dico_med,  'my_dico_med', my_dico_med)
 
     return my_dico_min, my_dico_med,  my_dico_max
 
@@ -90,7 +86,6 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
     '''renvoit un plot de la Frequence des differents aa dans les proteomes
     '''
 
-    # fig = super(PlotWindPowerDensity, self).get_figure()
     for aa in my_dico_min:
         # if aa == 'L':
         data_min,  data_med, data_max = None, None, None
@@ -112,8 +107,6 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
         ax = plt.subplot(111, polar=True)
 
 
-
-        # print (data_min_s, list_aa)
         r = np.arange(len(list_aa))
         rad = (r*2*np.pi/len(r))
         rad = list(rad)
@@ -183,7 +176,6 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
   fancybox=True, shadow=True, ncol=3)
         # fig.add_axes(ax)
         plt.show()
-
 
 
 if __name__ == "__main__":
