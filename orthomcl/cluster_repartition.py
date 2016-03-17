@@ -137,9 +137,6 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     N = len(label_names)
     ind = np.arange(N)
     width = 0.35
-    # zipper = zip(cluster_spec, label_names)
-    # zipper_sort = sorted(zipper)
-    # cluster_spec, label_names = zip(*zipper_sort)
 
     dom = ax.bar(ind, cluster_all, width=0.6, alpha=0.4, color='b', label= 'Proteines conservees')
     dom = ax.bar(ind, cluster_inter, bottom=cluster_all, width=0.7, alpha=0.6, color='grey', label= 'intermediaires')
@@ -180,8 +177,6 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     ax.legend(loc='upper left', fontsize=10)
     plt.show()
 
-#
-#
 if __name__ == '__main__':
 
     proteome_dir = '/home/issa/Documents/stage/init_data/proteomes/'

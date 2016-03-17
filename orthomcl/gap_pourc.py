@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 
-'''Le pourcentage de gap dans les alignements
+'''Renvoit le pourcentage de gap dans les alignements
 '''
 
 import os, sys,re
@@ -12,6 +12,11 @@ from operator import itemgetter
 
 
 def read_fasta (directory, liste_cluster):
+    """extract all fasta sequences in the directory
+    -in: -dir fasta files
+    -out: dico: key: name_protein ,  value: sequence
+    """
+
     dict_cluster = {}
     for cluster in liste_cluster:
         if cluster.endswith('.fasta'):
@@ -35,6 +40,9 @@ def read_fasta (directory, liste_cluster):
     return dict_cluster
 
 def gap_counter_plot (dict_cluster):
+    """ count le nombre de gaps dans chaque alignement et renvoit un barplot pour chacun
+    """
+
     dico_gap = {}
     for cluster in dict_cluster:
         dict_proteome = dict_cluster[cluster]

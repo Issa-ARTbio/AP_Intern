@@ -111,11 +111,6 @@ def polar_plotting (my_dico_min, my_dico_med,  my_dico_max, list_aa):
         rad = (r*2*np.pi/len(r))
         rad = list(rad)
         rad.append(rad[0])
-        # ax.plot(data,  color='r',linewidth=1,alpha= 0.5, label = data_min[0], marker= '*')
-        # N = 20
-        # theta = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
-        # fig = ax.bar(r, data_min_s,  color='r',linewidth=5,alpha= 0.5, label = data_min[0], )
-        # i = float([0])
         data_min_s = list(data_min[1:])
         data_min_s.append(data_min_s[0])
 

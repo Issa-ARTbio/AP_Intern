@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-
-
-
-
 def read_proteinOrtho_output(file_in):
 
     with open(file_in, 'r') as PO:
@@ -14,8 +10,6 @@ def read_proteinOrtho_output(file_in):
             line = line.strip()
             nb+=1
         print(nb)
-
-
 
 
 

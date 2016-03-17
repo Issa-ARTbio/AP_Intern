@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''remplacer les noms des sequences formatté par leurs noms en entiers
+'''remplacer les noms des sequences formattes par leurs noms en entiers
 '''
 
 
@@ -48,12 +48,8 @@ def give_full_name(liste_fasta, proteomes_name):
           sub_id = filename.split('_')
           identifiant = sub_id[0][0]+'_'+sub_id[-1]
           match_name[identifiant]= filename
-        #   print(identifiant, filename)
           cnt += 1
     match_name['C_thermalis7203']= match_name['C_7203']
-    # print(cnt)
-    # del match_name['C_7203']
-    # sys.exit(1)
     return match_name
 
 def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
@@ -74,7 +70,6 @@ def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
                 name = match_name[proteome_id]+"|"+protein_name
                 tmpr = name.split('|')
                 if name in all_fasta:
-                    # print(name)
                     outfile.write('>'+name+'\n')
                     if all_fasta[name]== seq:
                         outfile.write(seq+'\n')
@@ -91,21 +86,15 @@ def given_fullnames (cluster_out, cluster_in, all_fasta,match_name):
                     # Error cannot find name Microcoleus_vaginatus_FGP2|EGK89409.1
                     # Error cannot find name Fischerella_sp_JSC11|EHC11136.1
                     # Error cannot find name Cylindrospermopsis_raciborskii_CS505|EFA71456.1
-                    # Error cannot find name Arthrospira_platensis_NIES39|YP_005067747.1
-                    # Error cannot find name Cyanobacterium_YellowstoneA|CYA_2421
-                    # Error cannot find name Cyanobacterium_YellowstoneB|CYB_2292
-                    # Error cannot find name Arthrospira_maxima_CS328|EDZ93092.1
-                    # Error cannot find name Rubidibacter_lacunae_KORDI_512|ERN40473.1
-                    # Error cannot find name Chroococcidiopsis_thermalis_PCC_7203|AFY90625.1
 
         print("Fasta writing")
 
 if __name__ == '__main__':
-    directory = '/home/issa/Documents/stage/init_data/proteomes/'
+    directory = '/home/issa/Documents/stage/initial_data/proteomes/'
     liste_fasta = os.listdir(directory)
     all_fasta   = read_All_fasta(directory, liste_fasta)
-    cluster_out = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/cluster_biom_plus/'
-    cluster_dir = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/cluster_Biom_Plus'
+    cluster_out = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/tmp/'
+    cluster_dir = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/clusters_Biominerales'
     clusters    =  os.listdir(cluster_dir)
 
     directory = '/home/issa/Documents/stage/orthomcl/proteomes_format_shortname/'
