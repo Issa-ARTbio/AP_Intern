@@ -17,11 +17,15 @@ def read_fasta (fasta_in):
             amino_acids = []
             if line.startswith('>'):
                 header = line[1:].split()[0]
+                # 2- essaye quelque chose comme ca:
+                # dico_fasta[header] = []
             else:
                 sequence = line.strip()
                 seq_lenght = len(sequence)
                 for aa in sequence:
                     amino_acids.append(aa)
+                    # 3- dico_fasta[header].append(aa)
+            # 1- si ta sequence est sur plusieurs lignes tu vas perdre la composition en acide amine des ligne precedentes
             dico_fasta[header] = amino_acids
     return dico_fasta
 
@@ -30,7 +34,11 @@ def read_pyHCA_outF (hca_in):
     """return domains match in sequences by pyHCA program
     defaultdict(list) : key = protein_id , value = tpl(domain_start, domain_end, domain_lenght)
     """
-
+    #il faut faire tres attention avec le defaultdict
+    #si la cle n'existe pas il la cree
+    # donc quand tu parcours un dictionnaire si tu ne testes pas bien que la clef est presente ou absente il ne te le dira pas
+    # ce qui peux cacher des erreurs / problemes / bugs
+    # prefere un dictionnaire normal
     sequence_lenghts = defaultdict(list) # to delete if not use
     domain_hca = defaultdict(list)
     with open(hca_in, 'r') as hca:
@@ -38,10 +46,18 @@ def read_pyHCA_outF (hca_in):
             line = line.strip()
             domain = ()
             if line.startswith('>'):
+                #header, seq_length = line[1:].split()
+                #seq_length = int(seq_length)
                 header = line[1:].split()[0]
                 seq_lenght = line[1:].split()[1]
                 sequence_lenghts[header].append(seq_lenght)
             if line.startswith('domain'):
+                #name, domain_start, domain_end = line.strip().split()
+                #ATTENTION n'oublie pas d'enlever 1 a la position start
+                #dans segHCA comme dans pfam comme dans CDD on ne compte pas a partir de 0 mais a partir de 1
+                # pas le stop qui est inclusif
+                #il faut donc enlever 1 pour la que la premiere position d'un resultat de HCA/PFAM/CDD match l'index 0 d'une sequence en python
+                #domain_start = int(domain_start) - 1
                 domain_start  = line.strip().split()[1]
                 domain_end    = line.strip().split()[2]
                 domain_lenght = int(domain_end) - int(domain_start)
@@ -63,6 +79,7 @@ def read_cdd_outF (cdd_in):
                 header = element[2][1:]
                 domain_start = element[6]
                 domain_end   = element[7]
+                # ATTENTION index start -1 (pas le stop)
                 domain_lenght= int(domain_end) - int(domain_start)
                 domain = (domain_start, domain_end, domain_lenght)
                 domain_cdd[header].add(domain)
@@ -71,9 +88,13 @@ def read_cdd_outF (cdd_in):
 
 
 def match_domain (dico_fasta, domain_hca, domain_cdd):
+    # questions a te poster a toi meme:
+    # - qu est ce que tu veux recuperer a la fin de la fonction?
+    # - pour faire quoi ensuite?
+    # - quel format sera le plus pratique pour reutiliser la sortie?
     """find matchs in HCA and CDD domain_list
     """
-
+    # trop de defaultdict, c'est inutile un dictionnaire normal est mieux
     specific_protein_hca, specific_protein_cdd = defaultdict(list), defaultdict(list)
     hca, cdd = defaultdict(list), defaultdict(list)
 
@@ -81,6 +102,11 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
     overlap = 100
     print('CDD _ Data =', domain_cdd)
     print('HCA _ Data =', domain_hca)
+    
+    # tu n'as pas besoin de refaire des dictionnaires, il faut juste que tu recuperes les clefs 
+    # qui sont a la fois dans domain_hca et dans domain_cdd
+    # prot_has_both_dom = set(domain_hca.keys()).intersection(set(domain_cdd.keys()))
+    # ca t'evite deux boucles "for"
     for protein in list(domain_hca):
         position_hca = domain_hca[protein]
         number_domain_hca = len(position_hca)
@@ -92,8 +118,6 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
             # print('======================>')
         else:
             hca[protein].append(domain_hca[protein])
-
-
 
     for proteine in domain_cdd:
         position_cdd = domain_cdd[proteine]
@@ -111,16 +135,22 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
     for protein in hca:
         hca_pos_domain = hca[protein]
         cdd_pos_domain = cdd[protein]
-
-
+        # pourquoi faire un zip?
         for (h, c) in zip(hca_pos_domain, cdd_pos_domain):
+            # ca c'est bizarre:
             for start, stop , lenght in (dom for dom in h):
                 position_domaine = (start, stop , lenght)
                 if lenght >= 10:
 
                     for start_cdd, stop_cdd , lenght_cdd in (dom_cdd for dom_cdd in c):
                         dom = (start_cdd, stop_cdd , lenght_cdd)
+                        # a verifier
                         if -(overlap) <= (int(start) - int(start_cdd)) <= overlap or -(overlap) <= (int(stop) - int(stop_cdd)) <= overlap:
+                            # ma formule est:
+                            # new_start = max(start, start_cdd)
+                            # new_stop = min(stop, stop_cdd)
+                            # if new_start < new_stop and (new_stop - new_start) >= authorized_overlap:
+                            # ____## it's an overlap
                             diff = (lenght, lenght_cdd)
                             same_domains[protein] = diff
                             mes =  ('I find the same domain between the CDD psition {dom1} and the HCA position {dom2} in {prot}').format(dom1 = dom, dom2 = position_domaine, prot=protein)
