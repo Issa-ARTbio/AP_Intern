@@ -62,6 +62,7 @@ def read_pyHCA_outF (hca_in):
                 seq_lenght = line[1:].split()[1]
                 lenght_sequences[header] = (seq_lenght)
             if line.startswith('domain'):
+                # n'oublie pas de faire -1 au start cf. commentaires seq_HCA.py
                 domain_start  = line.strip().split()[1]
                 domain_end    = line.strip().split()[2]
                 domain_lenght = int(domain_end) - int(domain_start)
