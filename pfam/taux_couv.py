@@ -4,7 +4,7 @@
 
 ''' Pour chaque proteome:
     calcul le taux de couverture en residues
-    et le taux de couverture en domaine.
+    et le taux de couverture en domaine pfam.
     renvoit un histogramme du taux de coubverture
 
 Parametres:

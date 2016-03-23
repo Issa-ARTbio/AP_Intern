@@ -32,7 +32,6 @@ def count_clusters(good_prot, proteomes_name, groups):
 
         all_proteins       = set()
         my_ortho_cluster   = set()
-
         for ortho in out_mcl :
 
             ortho = ortho.rstrip()
@@ -60,7 +59,7 @@ def count_clusters(good_prot, proteomes_name, groups):
         singleton = list(singleton)
         prot_spec=[]
 
-        cluster_all, cluster_inter, cluster_spec, cluster_spec_single = [0]*len(proteomes_name), [0]*len(proteomes_name), [0]*len(proteomes_name), [0]*len(proteomes_name)
+        cluster_all, cluster_inter, cluster_spec = [0]*len(proteomes_name), [0]*len(proteomes_name), [0]*len(proteomes_name)
 
         for names in singleton:
             tmpr_sing = names.split('|')
@@ -69,7 +68,6 @@ def count_clusters(good_prot, proteomes_name, groups):
             pos_sing = proteomes_name.index(proteome_single)
             prot_spec.append(proteome_single)
             cluster_spec[pos_sing]+=1
-
 
         with open (groups, 'r') as clusters:
 
@@ -149,6 +147,7 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     for x,y in zip(bottom_spec,cluster_spec):
         z=x+y
         all_values.append(z)
+    print(sum(all_values))
     ax.set_xlim(-width,len(ind)+width)
     ax.set_xticks(ind+width)
     ax.set_xticklabels (label_names, rotation='vertical', fontsize=10)
@@ -175,16 +174,16 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
         plt.text(a, b, str(b), va = 'bottom',fontsize=10, rotation='vertical', fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 16})
     plt.title(u"Le nombre total de proteines par proteome dans les clusters", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
-    plt.show()
+    # plt.show()
 
 if __name__ == '__main__':
 
-    proteome_dir = '/home/issa/Documents/stage/init_data/proteomes/'
+    proteome_dir = '/home/issa/Documents/stage/initial_data/proteomes/'
     full_names = os.listdir(proteome_dir)
     good_prot = '/home/issa/Documents/stage/orthomcl/orthomcl_results/goodProteins.fasta'
     groups = '/home/issa/Documents/stage/orthomcl/orthomcl_results/groups.txt'
 
-    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format/'
+    directory = '/home/issa/Documents/stage/orthomcl/proteomes_format_shortname/'
     liste_fasta = os.listdir(directory)
 
     proteomes_name=[]
