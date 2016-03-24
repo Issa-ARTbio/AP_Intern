@@ -59,10 +59,10 @@ def read_cdd_outF (cdd_in):
             line = line.strip()
             domain = ()
             if line.startswith('Q#'):
-                element = line.split()
-                header = element[2][1:]
-                domain_start = element[6]
-                domain_end   = element[7]
+                element = line.split('\t')
+                header = element[0].split()[2][1:]
+                domain_start = element[3]
+                domain_end   = element[4]
                 domain_lenght= int(domain_end) - int(domain_start)
                 domain = (domain_start, domain_end, domain_lenght)
                 domain_cdd[header].add(domain)
@@ -88,8 +88,7 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
         if protein not in domain_cdd:
             specific_protein_hca[protein].append(domain_hca[protein])
             mes= ('{prot} not have domain in CDD').format(prot=protein)
-            # print('NOTE :', mes)
-            # print('======================>')
+            print(mes)
         else:
             hca[protein].append(domain_hca[protein])
 
@@ -102,7 +101,7 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
         if proteine not in domain_hca:
             specific_protein_cdd[proteine].append(domain_cdd[proteine])
             mes = ('{prot} not have domain in pyHCA').format(prot=proteine)
-            # print('NOTE :', mes)
+            print(mes)
         else:
             cdd[proteine].append(domain_cdd[proteine])
 
@@ -127,9 +126,9 @@ def match_domain (dico_fasta, domain_hca, domain_cdd):
                             print(mes)
                         else:
                             orphan_domains[protein].append(position_domaine)
-                            orphan_domains_cdd[proteine].append(dom)
+                            # orphan_domains_cdd[proteine].append(dom) # to use if there are domains in CDD and not in pyHCA
                             print('No shared')
-    print('orphan domains = ', orphan_domain)
+    print('orphan domains = ', orphan_domains)
             # for dom in h:
             #     for i, pos1 in enumerate(dom):
             #         print(pos1)

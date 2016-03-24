@@ -94,12 +94,12 @@ def read_cdd_outF (cdd_in):
             line = line.strip()
             domain = 0
             if line.startswith('Q#'):
-                element = line.split()
-                header = element[2][1:]
-                domain_start = element[6]
-                domain_end   = element[7]
+                element = line.split('\t')
+                header = element[0].split()[2][1:]
+                domain_start = element[3]
+                domain_end   = element[4]
                 domain_lenght= int(domain_end) - int(domain_start)
-                print(header, domain_start, domain_end)
+                # print(header, domain_start, domain_end)
                 domain = domain + domain_lenght
                 domain_cdd[header].add(domain)
     all_domain_cdd = {}
@@ -114,7 +114,7 @@ def read_cdd_outF (cdd_in):
 def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
     print('running ...')
     # For each file in the directory, execute the previous fonctions
-    all_prot, all_dom = dict(), dict()
+    couverture_residues_hca, couverture_domaines_hca, couverture_domaines_cdd, couverture_residues_cdd = dict(), dict(), dict(), dict()
     for filename in liste_fasta:
         if filename.endswith('.fasta'):
             fasta_in = os.path.join(directory, filename)
@@ -125,12 +125,17 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
             fasta = read_fasta(fasta_in)
             hca, seq_len = read_pyHCA_outF (hca_in)
             cdd = read_cdd_outF(cdd_in)
-            # print (filename, len(hca), len(seq_len))
+            # Count the number of domain in hca and in cdd and the number of proteins in the fasta
             nmb_domain = 0
-            nmbr_prot = 0
-            len_proteome_domain = 0
+            nmbr_prot  = 0
+            nb_dom_cdd = 0
+
+            # Count the number of residues
+            len_proteome_hca    = 0
             len_proteome_fasta  = 0
-            #Calcul de la longueur totale pour chaque  proteome
+            len_proteome_cdd    = 0
+
+            #Compute the total leght for each proteome
             for seq_id in fasta:
                 nmbr_prot+=1
                 len_fasta = fasta[seq_id]
@@ -138,39 +143,55 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
             for seq_id in hca:
                 nmb_domain+=1
                 ld = hca[seq_id]
-                len_proteome_domain = len_proteome_domain + int(ld)
-
-            # print(hca)
-            taux_prot = (len_proteome_domain/len_proteome_fasta)*100
-            domaine_count = (nmb_domain/nmbr_prot)*100
-            # print(filename, '==', domaine_count, '==', taux_prot)
-            all_prot[proteome_name] = taux_prot
-            all_dom[proteome_name] = domaine_count
-    return all_prot, all_dom
-
-def plotting (all_prot, all_dom):
-
-    all_couv = []
-    t_prot_dom_name=()
-    for proteome_name in all_prot:
+                len_proteome_hca = len_proteome_hca + int(ld)
+            for seq_id in cdd:
+                nb_dom_cdd+=1
+                lenght_cdd = cdd[seq_id]
+                len_proteome_cdd = len_proteome_cdd + lenght_cdd
 
 
-        taux_prt = all_prot[proteome_name]
-        taux_dom = all_dom[proteome_name]
-        t_prot_dom_name = taux_prt, taux_dom, proteome_name
+            taux_couverture_residues = (len_proteome_hca/len_proteome_fasta)*100
+            taux_couverture_domains  = (nmb_domain/nmbr_prot)*100
 
-        all_couv.append(t_prot_dom_name)
+            tx_residues_cdd = (len_proteome_cdd/len_proteome_fasta)*100
+            tx_domains_cdd  = (nb_dom_cdd/nmbr_prot)*100
 
-    all_couv.sort()
+            couverture_residues_hca[proteome_name] = taux_couverture_residues
+            couverture_domaines_hca[proteome_name] = taux_couverture_domains
 
-    list_de_taux = []
-    list_domain1 = []
-    list_prot_name = []
-    for data_protein, data_dom, proteome_lab in all_couv:
-        # print (proteome_lab, '==', data_protein, '==', data_dom)
-        list_de_taux.append(data_protein)
-        list_domain1.append(data_dom)
-        list_prot_name.append(proteome_lab)
+            couverture_residues_cdd[proteome_name] = tx_residues_cdd
+            couverture_domaines_cdd[proteome_name] = tx_domains_cdd
+
+    return couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd
+
+def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd):
+
+    all_couverture = []
+    my_set =()
+    for proteome_name in couverture_domaines_hca:
+
+
+        residues_hca = couverture_residues_hca[proteome_name]
+        domain_hca = couverture_domaines_hca[proteome_name]
+
+        residues_cdd = couverture_residues_cdd[proteome_name]
+        domain_cdd = couverture_domaines_cdd[proteome_name]
+
+        my_set = residues_hca, domain_hca, residues_cdd, domain_cdd, proteome_name
+
+        all_couverture.append(my_set)
+
+    all_couverture.sort()
+
+    res_hca, dom_hca, res_cdd, dom_cdd, list_proteome_name  = [], [], [], [], []
+
+    for r_hca, d_hca, r_cdd, d_cdd, proteome in all_couverture:
+        res_hca.append(r_hca)
+        dom_hca.append(d_hca)
+        res_cdd.append(r_cdd)
+        dom_cdd.append(d_cdd)
+        list_proteome_name.append(proteome)
+
     # pour creer des partitions
     # for i in range(0, len(list_prot_name), 30):
     #     data_protein = list_de_taux[i : i +30]
@@ -179,17 +200,20 @@ def plotting (all_prot, all_dom):
 
         #histogramme
     fig, ax = plt.subplots()
-    N = len(list_prot_name)
+    N = len(list_proteome_name)
     ind = np.arange(N)
     width = 0.35
 
-    prot = ax.bar(ind, list_de_taux, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en residues (%)')
-    dom = ax.bar(ind+width, list_domain1, width=0.2, alpha=0.5, color='g', label= 'Taux de couverture en domaines (%)')
-    #
+    hca_residues_plot = ax.bar(ind, res_hca, width=0.2, alpha=0.5, color='r', label= 'Taux de couverture en residues HCA (%)')
+    hca_domains_plot = ax.bar(ind+width, dom_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en domaines HCA (%)')
+
+    cdd_res_plot = ax.bar(ind, res_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en residues CDD (%)')
+    cdd_dom_plot = ax.bar(ind+width, dom_cdd, width=0.2, alpha=0.5, color='grey', label= 'Taux de couverture en domaines CDD(%)')
+
     ax.set_xlim(-width,len(ind)+width)
     ax.set_xticks(ind+width)
-    ax.set_xticklabels (list_prot_name, rotation='vertical', fontsize=10)
-    for name in ax.set_xticklabels(list_prot_name, rotation= 'vertical', fontsize=10):
+    ax.set_xticklabels (list_proteome_name, rotation='vertical', fontsize=10)
+    for name in ax.set_xticklabels(list_proteome_name, rotation= 'vertical', fontsize=10):
         if re.search('Synechococcus_sp_PCC_6312', str(name)) :
             name.set_color('green')
         elif re.search('Synechococcus_calcipolaris' , str(name)):
@@ -207,8 +231,8 @@ def plotting (all_prot, all_dom):
     plt.grid(True)
     plt.ylabel('Taux de couverture', fontsize=15, color='g', alpha=0.8)
     plt.xlabel('Proteomes', fontsize=15, color='b', alpha=0.8)
-    ax.set_ylim(0,110)
-    plt.title(u"Taux de couverture en domaines des proteomes par HCA", fontsize=17, fontdict={'family': 'monospace'})
+    ax.set_ylim(0,160)
+    plt.title(u"Taux de couverture en domaines des proteomes par HCA et CDD", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
     # # plt.savefig(filename+u'boxplotProteome.png')
     plt.show()
@@ -217,14 +241,14 @@ if __name__ == '__main__':
 
 
 
-    directory = '/home/issa/Documents/stage/initial_data/proteomes'
+    directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
     liste_fasta = os.listdir(directory)
 
-    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/pyHCA/analyse/result_hca/'
-    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/results_CDD/'
+    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
 
 
 
-    protein, domain = taux_couverture (directory, liste_fasta, hca_out, cdd_out)
-    plotting(protein, domain)
+    resid_HCA, domain_HCA, resid_CDD, domain_CDD = taux_couverture (directory, liste_fasta, hca_out, cdd_out)
+    plotting(resid_HCA, domain_HCA, resid_CDD, domain_CDD)
     print('succefully done !!!')
