@@ -109,19 +109,20 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
 
     prot_has_both_dom = set(domain_hca.keys()).intersection(set(domain_cdd.keys()))
     # print(prot_has_both_dom)
-    for protein in prot_has_both_dom:
-        hca_pos_domain = domain_hca[protein]
-        # cdd_pos_domain = domain_cdd[protein]
-        list_position_bin = dico_bin[protein]
-        for start, stop, lenght in (dom for dom in hca_pos_domain):
-            couverture_hca = []
-            dom_hca = (start, stop, lenght)
-            for i in range(int(start), int(stop)):
-                couverture_hca.append(list_position_bin[i])
-            if (sum(couverture_hca)/lenght)*100 < 20:
-                orphan_domains[protein].add(dom_hca)
-            else:
-                same_domains[protein].add(dom_hca)
+    for protein in domain_hca:
+        if protein in domain_cdd:
+            hca_pos_domain = domain_hca[protein]
+            # cdd_pos_domain = domain_cdd[protein]
+            list_position_bin = dico_bin[protein]
+            for start, stop, lenght in hca_pos_domain:
+                couverture_hca = []
+                dom_hca = (start, stop, lenght)
+                for i in range(int(start), int(stop)):
+                    couverture_hca.append(list_position_bin[i])
+                if (sum(couverture_hca)/lenght)*100 < 20:
+                    orphan_domains[protein].add(dom_hca)
+                else:
+                    same_domains[protein].add(dom_hca)
                 # print(('I find the same domain in HCA position {dom} in {prot}').format(dom = dom_hca, prot=protein))
     # print(proteome_name, len(orphan_domains), len(same_domains), number_protein)
 
