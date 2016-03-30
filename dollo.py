@@ -110,6 +110,7 @@ if __name__ == '__main__':
     # (tree&'Chroococcidiopsis_thermalis_PCC_7203').add_features(domains=set(['biom_cyto']))
 
     (tree&'Synechococcus_sp_PCC_7336').add_features(domains=set(['A','B']))
+    #ajouter le set de domaines CDD : for loop qui assigne la feuille correspondant à 
     # (tree&'sp1').add_features(domains=set(['A','B']))
     # (tree&'sp2').add_features(domains=set(['B','C']))
     # (tree&'sp3').add_features(domains=set(['D','E']))

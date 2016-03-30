@@ -57,10 +57,11 @@ def read_pyHCA_outF (hca_in):
                 header = line[1:].split()[0]
                 seq_lenght = line[1:].split()[1]
             if line.startswith('domain'):
-                domain_start  = line.strip().split()[1]
-                domain_end    = line.strip().split()[2]
-                domain_lenght = int(domain_end) - int(domain_start)
-                domain_hca[header].add(domain_lenght)
+                domain_start  = int(line.strip().split()[1])
+                domain_end    = int(line.strip().split()[2])
+                domain_lenght = domain_end - domain_start
+                if domain_lenght >= 30:
+                    domain_hca[header].add(domain_lenght)
 
     domain_couv = {}
     for protein in domain_hca:
@@ -72,7 +73,7 @@ def read_pyHCA_outF (hca_in):
     return domain_couv
 
 
-def read_cdd_outF (cdd_in):
+def read_cdd_outF (cdd_in, protein_dict):
     """return domain match in sequences by CDD scan
     defaultdict(list) : key = protein_id , value = tpl(domain_start, domain_end, domain_lenght)
     """
@@ -88,16 +89,24 @@ def read_cdd_outF (cdd_in):
                     header= header.split('[')[0]
                 domain_start = element[3]
                 domain_start = int(domain_start) - 1
-                domain_end   = element[4]
-                domain_lenght= int(domain_end) - int(domain_start)
-                domain_cdd[header].add(domain_lenght)
+                domain_end   = int(element[4])
+                domain_lenght= domain_end - domain_start
+                domain = (domain_start, domain_end, domain_lenght)
+                domain_cdd[header].add(domain)
 
-    domain_cdd_sum = {}
-    for protein in domain_cdd:
-        values = domain_cdd[protein]
-        dom_lenght = sum(values)
-        domain_cdd_sum[protein] = dom_lenght
-    return domain_cdd_sum
+    dico_bin = {}
+    for protein in protein_dict:
+        lenght_seq = protein_dict[protein]
+        if protein in domain_cdd:
+            liste_of_position = [0]*lenght_seq
+            cdd_dom = domain_cdd[protein]
+            for start, stop, lenght in cdd_dom:
+                for i in range (int(start), int(stop)):
+                    liste_of_position[i] = 1
+                    total_pos = sum(liste_of_position)
+            dico_bin[protein] = total_pos
+
+    return dico_bin
 
 def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
     print('running ...')
@@ -112,7 +121,7 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
 
             fasta = read_fasta(fasta_in)
             hca = read_pyHCA_outF (hca_in)
-            cdd = read_cdd_outF(cdd_in)
+            cdd = read_cdd_outF(cdd_in, fasta)
 
             # Count the number of domain in hca and in cdd and the number of proteins in the fasta
             nmb_domain = 0
@@ -127,15 +136,15 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
             #Compute the total leght for each proteome
             for seq_id in fasta:
                 nmbr_prot+=1
-                len_fasta = fasta[seq_id]
-                len_proteome_fasta = len_proteome_fasta + int(len_fasta)
+                len_fasta = int(fasta[seq_id])
+                len_proteome_fasta += len_fasta
             for seq_id in hca:
                 nmb_domain+=1
-                ld = hca[seq_id]
-                len_proteome_hca = len_proteome_hca + int(ld)
+                ld = int(hca[seq_id])
+                len_proteome_hca =  len_proteome_hca + ld
             for seq_id in cdd:
                 nb_dom_cdd+=1
-                lenght_cdd = cdd[seq_id]
+                lenght_cdd = int(cdd[seq_id])
                 len_proteome_cdd = len_proteome_cdd + lenght_cdd
 
 
@@ -150,7 +159,7 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
 
             couverture_residues_cdd[proteome_name] = tx_residues_cdd
             couverture_domaines_cdd[proteome_name] = tx_domains_cdd
-            print(proteome_name, tx_residues_cdd)
+            print(proteome_name, taux_couverture_residues)
     return couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd
 
 def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd):
