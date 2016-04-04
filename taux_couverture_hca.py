@@ -85,8 +85,10 @@ def read_cdd_outF (cdd_in, protein_dict):
                 domains_list = []
                 element = line.split('\t')
                 header = element[0].split()[2][1:]
-                if header.find('['):
+                if header.find('[') or header.find('_'):
                     header= header.split('[')[0]
+                elif header.find('_'):
+                    header= header.split('_')[0]
                 domain_start = element[3]
                 domain_start = int(domain_start) - 1
                 domain_end   = int(element[4])
@@ -101,11 +103,13 @@ def read_cdd_outF (cdd_in, protein_dict):
             liste_of_position = [0]*lenght_seq
             cdd_dom = domain_cdd[protein]
             for start, stop, lenght in cdd_dom:
+                new_list = []
                 for i in range (int(start), int(stop)):
+                    print(protein, lenght, start, stop)
                     liste_of_position[i] = 1
+                    # new_list.append(1)
                     total_pos = sum(liste_of_position)
             dico_bin[protein] = total_pos
-
     return dico_bin
 
 def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
@@ -159,7 +163,6 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
 
             couverture_residues_cdd[proteome_name] = tx_residues_cdd
             couverture_domaines_cdd[proteome_name] = tx_domains_cdd
-            print(proteome_name, taux_couverture_residues)
     return couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd
 
 def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd):
@@ -175,15 +178,15 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
         residues_cdd = couverture_residues_cdd[proteome_name]
         domain_cdd = couverture_domaines_cdd[proteome_name]
 
-        my_set = residues_hca, domain_hca, residues_cdd, domain_cdd, proteome_name
+        my_set = residues_cdd, domain_cdd, residues_hca, domain_hca, proteome_name
 
         all_couverture.append(my_set)
 
     all_couverture.sort()
 
-    res_hca, dom_hca, res_cdd, dom_cdd, list_proteome_name  = [], [], [], [], []
+    res_cdd, dom_cdd, res_hca, dom_hca, list_proteome_name  = [], [], [], [], []
 
-    for r_hca, d_hca, r_cdd, d_cdd, proteome in all_couverture:
+    for r_cdd, d_cdd, r_hca, d_hca, proteome in all_couverture:
         res_hca.append(r_hca)
         dom_hca.append(d_hca)
         res_cdd.append(r_cdd)
@@ -238,11 +241,16 @@ if __name__ == '__main__':
 
 
 
-    directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    liste_fasta = os.listdir(directory)
+    directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
 
-    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    #data test
+    # hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    # cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    # directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+
+    liste_fasta = os.listdir(directory)
 
 
 
