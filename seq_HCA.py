@@ -91,7 +91,8 @@ def binary_position(dico_fasta, domain_cdd):
                     try:
                         liste_of_position[i] = 1
                     except:
-                        print(protein, start, stop, lenght)
+                        print(protein, start, stop, lenght_seq)
+                        sys.exit(1)
             dico_bin[protein] = liste_of_position
     return dico_bin
 
@@ -234,7 +235,7 @@ if __name__ == '__main__':
 
     directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
     dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/orp_domains_fasta/'
-    dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/data/orphans_domaines_pos/'
+    # dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/data/orphans_domaines_pos/'
 
     #TEST
     # directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'

@@ -21,7 +21,7 @@ from collections import defaultdict
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-
+import time
 
 def read_fasta(fasta_in):
     ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = proteome_name et val = dict('protein_name': len_sequence)
@@ -97,19 +97,22 @@ def read_cdd_outF (cdd_in, protein_dict):
                 domain_cdd[header].add(domain)
 
     dico_bin = {}
-    for protein in protein_dict:
-        lenght_seq = protein_dict[protein]
-        if protein in domain_cdd:
+    for protein in domain_cdd:
+        if protein in protein_dict:
+            lenght_seq = protein_dict[protein]
             liste_of_position = [0]*lenght_seq
             cdd_dom = domain_cdd[protein]
+
             for start, stop, lenght in cdd_dom:
                 new_list = []
                 for i in range (int(start), int(stop)):
                     print(protein, lenght, start, stop)
                     liste_of_position[i] = 1
-                    # new_list.append(1)
                     total_pos = sum(liste_of_position)
             dico_bin[protein] = total_pos
+
+        else:
+            print("{prot} don't match any protein in the fasta".format(prot=protein))
     return dico_bin
 
 def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
