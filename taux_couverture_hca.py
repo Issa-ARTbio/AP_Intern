@@ -43,7 +43,6 @@ def read_fasta(fasta_in):
                 protein_dict[name_protein] += len_seq
     return protein_dict
 
-
 def read_pyHCA_outF (hca_in):
     """return domains match in sequences by pyHCA program
     defaultdict(set) : key = protein_id , value = domain_lenght od the protein (sum all domains lenghts in the protein)
@@ -170,9 +169,11 @@ def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
 def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_residues_cdd, couverture_domaines_cdd):
 
     all_couverture = []
+    all_prot_label = []
     my_set =()
-    for proteome_name in couverture_domaines_hca:
+    biomin = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
 
+    for proteome_name in couverture_domaines_hca:
 
         residues_hca = couverture_residues_hca[proteome_name]
         domain_hca = couverture_domaines_hca[proteome_name]
@@ -180,20 +181,20 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
         residues_cdd = couverture_residues_cdd[proteome_name]
         domain_cdd = couverture_domaines_cdd[proteome_name]
 
-        my_set = residues_cdd, domain_cdd, residues_hca, domain_hca, proteome_name
-
+        my_set = residues_cdd, domain_cdd, residues_hca, domain_hca
+        all_prot_label.append(proteome_name)
         all_couverture.append(my_set)
 
     all_couverture.sort()
 
     res_cdd, dom_cdd, res_hca, dom_hca, list_proteome_name  = [], [], [], [], []
 
-    for r_cdd, d_cdd, r_hca, d_hca, proteome in all_couverture:
+    for r_cdd, d_cdd, r_hca, d_hca in all_couverture:
         res_hca.append(r_hca)
         dom_hca.append(d_hca)
         res_cdd.append(r_cdd)
         dom_cdd.append(d_cdd)
-        list_proteome_name.append(proteome)
+        # list_proteome_name.append(proteome)
 
     # pour creer des partitions
     # for i in range(0, len(list_prot_name), 30):
@@ -201,13 +202,35 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     #     data_domain = list_domain1[i : i +30]
     #     name_proteome = list_prot_name[i : i +30]
 
-    dataF = pd.DataFrame(all_couverture, columns=['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA', 'proteome'])
-        #histogramme
-    fig, ax = plt.subplots()
-    N = len(list_proteome_name)
-    ind = np.arange(N)
-    width = 0.35
 
+
+    #Plots
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    data = [res_cdd, dom_cdd, res_hca, dom_hca]
+    # bp = ax.boxplot(data, patch_artist=True, )
+    bp = ax.boxplot(res_cdd, patch_artist=True)
+
+    for box in bp['boxes']:
+        box.set( color='#7570b3', linewidth=2)
+        box.set( facecolor = 'w' )
+    for whisker in bp['whiskers']:
+        whisker.set(color='#7570b3', linewidth=2)
+    for cap in bp['caps']:
+        cap.set(color='#7570b3', linewidth=2)
+    for median in bp['medians']:
+        median.set(color='k', linewidth=2.5)
+    for flier in bp['fliers']:
+        flier.set(marker='+', color='#e7298a', alpha=0.5)
+    # ax.set_xticklabels(['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
+
+    biomine = []
+    for proteome in range(len(all_prot_label)):
+        if all_prot_label[proteome] in biomin:
+            biomine.append(res_cdd[proteome])
+            print (all_prot_label[proteome], biomine)
+    dx = list(np.arange(len(biomine)))
+    sct = plt.scatter(dx, biomine, color='red', label='biominerales')
     # Bar Plots ***
     # hca_residues_plot = ax.bar(ind, res_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en residus HCA (%)')
     # hca_domains_plot = ax.bar(ind, dom_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en domaines HCA (%)')
@@ -217,26 +240,24 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
 
 
     #Box Plot ***
-    # hca_residues_plot = ax.boxplot(res_hca, xlab='Taux de couverture en residues HCA (%)', ylab='taux de distribution')
-    # dataF.boxplot(notch=0, sym='+', vert=1, whis=1.5)
+
+    #panda
+    # dataF = pd.DataFrame(all_couverture, columns=['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
+
     # biomin = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
-    # dataFA = dataF.copy()
-    # dataF.plot.scatter()
-    plt.boxplot(res_hca)
-    # print (dataFA.proteome)
-    # x = np.arange
-    # for i in dataF.proteome:
-    #     if i in biomin:
-    #         plt.scatter(x, res_hca, color='red', label='biominerales')
-    #         # z = dataF[dataF.proteome == i].index.tolist()
-    #         # biomin_data.append(z)
-    #         print (z)
-            # biomin_data = dataF.loc(z)
-            # print (type(biomin_data), biomin_data)
-            # biomin_data.plot.scatter(c='red')
-    # ax.set_xlim(-width,len(ind)+width)
-    # ax.set_xticks(ind+width)
-    # ax.set_xticklabels (list_proteome_name, rotation='vertical', fontsize=10)
+    #
+    # N = len(res_cdd)
+    # ind = np.arange(N)
+    # # plt.boxplot(res_cdd)
+    # biomine = []
+    # for proteome in range(len(list_proteome_name)):
+    #     if list_proteome_name[proteome] in biomin:
+    #         biomine.append(res_cdd[proteome])
+    #         name.append(proteome)
+    # pos_x = np.arange(len(biomine))
+    # plt.scatter(list(pos_x),biomine, color='red', label='biominerales')
+
+    # ax.set_xticklabels (all_prot_label, rotation='vertical', fontsize=10)
     # for name in ax.set_xticklabels(list_proteome_name, rotation= 'vertical', fontsize=10):
     #     if re.search('Synechococcus_sp_PCC_6312', str(name)) :
     #         name.set_color('green')
@@ -250,11 +271,11 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     #         name.set_color('red')
     #     elif  re.search ('Chroococcidiopsis_thermalis_PCC_7203', str(name)):
     #         name.set_color('red')
-    plt.grid(True)
-    plt.ylabel('Taux de couverture', fontsize=15, color='g', alpha=0.8)
-    plt.xlabel('Type de Couverture', fontsize=15, color='b', alpha=0.8)
+    # plt.grid(True)
+    plt.ylabel('Taux de couverture', fontsize=15, color='k', fontdict={'family': 'monospace'}, alpha=0.8)
+    plt.xlabel('Type de Couverture', fontsize=15, color='k', fontdict={'family': 'monospace'}, alpha=0.8)
 
-    ax.set_ylim(0,110)
+    # ax.set_ylim(0,110)
 
     plt.title(u"Taux de couverture en domaine des proteomes par HCA et CDD", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
