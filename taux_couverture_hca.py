@@ -21,7 +21,7 @@ from collections import defaultdict
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import time
+import pandas as pd
 
 def read_fasta(fasta_in):
     ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = proteome_name et val = dict('protein_name': len_sequence)
@@ -46,7 +46,7 @@ def read_fasta(fasta_in):
 
 def read_pyHCA_outF (hca_in):
     """return domains match in sequences by pyHCA program
-    defaultdict(list) : key = protein_id , value = tpl(domain_start, domain_end, domain_lenght)
+    defaultdict(set) : key = protein_id , value = domain_lenght od the protein (sum all domains lenghts in the protein)
     """
     domain_hca = defaultdict(set)
 
@@ -69,13 +69,13 @@ def read_pyHCA_outF (hca_in):
         dom_lenght = sum(values)
         domain_couv[protein] = dom_lenght
 
-
     return domain_couv
 
 
 def read_cdd_outF (cdd_in, protein_dict):
     """return domain match in sequences by CDD scan
-    defaultdict(list) : key = protein_id , value = tpl(domain_start, domain_end, domain_lenght)
+    if protein in CDD is present in fasta sequence, create a liste[0]*len_protein
+    replace 0 by 1 in the range of the found domain
     """
     domain_cdd = defaultdict(set)
     with open(cdd_in, 'r') as cdd:
@@ -85,10 +85,8 @@ def read_cdd_outF (cdd_in, protein_dict):
                 domains_list = []
                 element = line.split('\t')
                 header = element[0].split()[2][1:]
-                if header.find('[') or header.find('_'):
+                if header.find('['):
                     header= header.split('[')[0]
-                elif header.find('_'):
-                    header= header.split('_')[0]
                 domain_start = element[3]
                 domain_start = int(domain_start) - 1
                 domain_end   = int(element[4])
@@ -104,15 +102,16 @@ def read_cdd_outF (cdd_in, protein_dict):
             cdd_dom = domain_cdd[protein]
 
             for start, stop, lenght in cdd_dom:
-                new_list = []
                 for i in range (int(start), int(stop)):
-                    print(protein, lenght, start, stop)
-                    liste_of_position[i] = 1
-                    total_pos = sum(liste_of_position)
-            dico_bin[protein] = total_pos
-
+                    try:
+                        liste_of_position[i] = 1
+                        total_pos = sum(liste_of_position)
+                        dico_bin[protein] = total_pos
+                    except:
+                        print('Error in ', protein, lenght, start, stop)
         else:
             print("{prot} don't match any protein in the fasta".format(prot=protein))
+
     return dico_bin
 
 def taux_couverture (directory, liste_fasta, hca_out, cdd_out):
@@ -202,41 +201,62 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     #     data_domain = list_domain1[i : i +30]
     #     name_proteome = list_prot_name[i : i +30]
 
+    dataF = pd.DataFrame(all_couverture, columns=['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA', 'proteome'])
         #histogramme
     fig, ax = plt.subplots()
     N = len(list_proteome_name)
     ind = np.arange(N)
     width = 0.35
 
-    hca_residues_plot = ax.bar(ind, res_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en residues HCA (%)')
+    # Bar Plots ***
+    # hca_residues_plot = ax.bar(ind, res_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en residus HCA (%)')
     # hca_domains_plot = ax.bar(ind, dom_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en domaines HCA (%)')
 
-    cdd_res_plot = ax.bar(ind+width, res_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en residues CDD (%)')
-    # cdd_dom_plot = ax.bar(ind+width, dom_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en domaines CDD(%)')
-
-    ax.set_xlim(-width,len(ind)+width)
-    ax.set_xticks(ind+width)
-    ax.set_xticklabels (list_proteome_name, rotation='vertical', fontsize=10)
-    for name in ax.set_xticklabels(list_proteome_name, rotation= 'vertical', fontsize=10):
-        if re.search('Synechococcus_sp_PCC_6312', str(name)) :
-            name.set_color('green')
-        elif re.search('Synechococcus_calcipolaris' , str(name)):
-            name.set_color('green')
-        elif re.search('Thermosynechococcus_elongatus_BP1' , str(name)):
-            name.set_color('green')
+    # cdd_res_plot = ax.bar(ind+width, res_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en residus CDD (%)')
+    # cdd_dom_plot = ax.bar(ind+width, dom_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en domaines CDD (%)')
 
 
-        elif re.search('Gloeomargarita_lithophora' , str(name)):
-            name.set_color('red')
-        elif  re.search ('Cyanothece_sp_PCC_7425', str(name)):
-            name.set_color('red')
-        elif  re.search ('Chroococcidiopsis_thermalis_PCC_7203', str(name)):
-            name.set_color('red')
+    #Box Plot ***
+    # hca_residues_plot = ax.boxplot(res_hca, xlab='Taux de couverture en residues HCA (%)', ylab='taux de distribution')
+    # dataF.boxplot(notch=0, sym='+', vert=1, whis=1.5)
+    # biomin = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
+    # dataFA = dataF.copy()
+    # dataF.plot.scatter()
+    plt.boxplot(res_hca)
+    # print (dataFA.proteome)
+    # x = np.arange
+    # for i in dataF.proteome:
+    #     if i in biomin:
+    #         plt.scatter(x, res_hca, color='red', label='biominerales')
+    #         # z = dataF[dataF.proteome == i].index.tolist()
+    #         # biomin_data.append(z)
+    #         print (z)
+            # biomin_data = dataF.loc(z)
+            # print (type(biomin_data), biomin_data)
+            # biomin_data.plot.scatter(c='red')
+    # ax.set_xlim(-width,len(ind)+width)
+    # ax.set_xticks(ind+width)
+    # ax.set_xticklabels (list_proteome_name, rotation='vertical', fontsize=10)
+    # for name in ax.set_xticklabels(list_proteome_name, rotation= 'vertical', fontsize=10):
+    #     if re.search('Synechococcus_sp_PCC_6312', str(name)) :
+    #         name.set_color('green')
+    #     elif re.search('Synechococcus_calcipolaris' , str(name)):
+    #         name.set_color('green')
+    #     elif re.search('Thermosynechococcus_elongatus_BP1' , str(name)):
+    #         name.set_color('green')
+    #     elif re.search('Gloeomargarita_lithophora' , str(name)):
+    #         name.set_color('red')
+    #     elif  re.search ('Cyanothece_sp_PCC_7425', str(name)):
+    #         name.set_color('red')
+    #     elif  re.search ('Chroococcidiopsis_thermalis_PCC_7203', str(name)):
+    #         name.set_color('red')
     plt.grid(True)
     plt.ylabel('Taux de couverture', fontsize=15, color='g', alpha=0.8)
-    plt.xlabel('Proteomes', fontsize=15, color='b', alpha=0.8)
+    plt.xlabel('Type de Couverture', fontsize=15, color='b', alpha=0.8)
+
     ax.set_ylim(0,110)
-    plt.title(u"Taux de couverture en residues des proteomes par HCA et CDD", fontsize=17, fontdict={'family': 'monospace'})
+
+    plt.title(u"Taux de couverture en domaine des proteomes par HCA et CDD", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
     plt.show()
 
@@ -244,14 +264,14 @@ if __name__ == '__main__':
 
 
 
-    directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    # directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    # hca_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    # cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
 
     #data test
-    # hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    # cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    # directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
 
     liste_fasta = os.listdir(directory)
 

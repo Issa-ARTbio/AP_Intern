@@ -60,7 +60,7 @@ if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme
 
     # Construction d'un plot avec 20 listes de valeurs au max
 
-    #taille max d'un plot = 20
+    #taille max d'un plot = 20 proteomes
     for i in range(0, len(liste_Totale), 20):
         data20 = liste_Totale[i : i +20]
         name_20 = list_proteome_name[i : i +20]
