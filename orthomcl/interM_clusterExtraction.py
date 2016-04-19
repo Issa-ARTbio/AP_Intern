@@ -125,8 +125,8 @@ def give_full_name(full_names, proteomes_name, cluster_biomPlus, cluster_biom):
         full_name = match_name[short_name]
         label_names.append(full_name)
 
-    #change the data according the list od cluster
-    for my_list in cluster_biomPlus:
+    #change the data according the list of cluster
+    for my_list in cluster_biom:
         tmp_dico = {}
         my_new_list = []
         for name in my_list:
@@ -165,9 +165,10 @@ if __name__ == '__main__':
 
     proteome_dir = '/home/issa/Documents/stage/initial_data/proteomes/'
     full_names = os.listdir(proteome_dir)
-    outf = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/cluster_'
+    outf = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/wo_para/cluster_'
     # groups = 'test_interm_cluster.txt'
-    groups = '/home/issa/Documents/stage/orthomcl/orthomcl_results/groups.txt'
+    # groups = '/home/issa/Documents/stage/orthomcl/orthomcl_results/groups.txt'
+    groups = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/wo_para/Inter_Cluster_sansDupli.txt'
     # biomineral_sp = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
     biomineral_sp = ['S_6312', 'S_calcipolaris', 'T_BP1', 'G_lithophora', 'C_7425', 'C_thermalis7203']
     proteome_dir = '/home/issa/Documents/stage/initial_data/proteomes/'

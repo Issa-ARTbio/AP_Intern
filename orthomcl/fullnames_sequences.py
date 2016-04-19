@@ -93,8 +93,8 @@ if __name__ == '__main__':
     directory = '/home/issa/Documents/stage/initial_data/proteomes/'
     liste_fasta = os.listdir(directory)
     all_fasta   = read_All_fasta(directory, liste_fasta)
-    cluster_out = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/tmp/'
-    cluster_dir = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/clusters_Biominerales'
+    cluster_out = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/wo_para/tmp/'
+    cluster_dir = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/wo_para/cluster/'
     clusters    =  os.listdir(cluster_dir)
 
     directory = '/home/issa/Documents/stage/orthomcl/proteomes_format_shortname/'
@@ -110,3 +110,4 @@ if __name__ == '__main__':
                 cluster_in = os.path.join(cluster_dir, filename)
                 cluster_outf= os.path.join(cluster_out, filename)
                 given_fullnames(cluster_outf, cluster_in, all_fasta, match)
+    print('succefully done !!!')

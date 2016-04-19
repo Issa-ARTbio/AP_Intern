@@ -123,7 +123,7 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
 
     return orphan_domains
 
-# def write_outFile (orphan_domains, outF, dico_fasta, proteome_name): #dico_fasta
+def write_outFile (orphan_domains, outF, dico_fasta, proteome_name):
 
     # Write positions of orphan domains in out files
     # with open (outF, 'w+') as outfile:
@@ -133,17 +133,17 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
     #             outfile.write('>'+proteome_name+'|'+protein+'\n'+'orphan domain'+'\t'+str(start)+'\t'+str(stop)+'\t'+str(couvert)+'\n')
 
     # Write orphan domains in fasta format
-    # with open (outF, 'w') as outfile:
-    #     for protein in dico_fasta:
-    #         sequence = dico_fasta[protein]
-    #         if protein in orphan_domains:
-    #             pos = orphan_domains[protein]
-    #             for start, stop, couvert in pos:
-    #                 start = int(start)
-    #                 stop = int (stop)
-    #                 domain = (sequence[start:stop])
-    #                 sequence_domain = ''.join(str(aa) for aa in domain)
-    #                 outfile.write('>'+protein+'|'+proteome_name+'\n'+str(sequence_domain)+'\n')
+    with open (outF, 'w') as outfile:
+        for protein in dico_fasta:
+            sequence = dico_fasta[protein]
+            if protein in orphan_domains:
+                pos = orphan_domains[protein]
+                for start, stop, couvert in pos:
+                    start = int(start)
+                    stop = int (stop)
+                    domain = (sequence[start:stop])
+                    sequence_domain = ''.join(str(aa) for aa in domain)
+                    outfile.write('>'+protein+'|'+proteome_name+'\n'+str(sequence_domain)+'\n')
 def main():
     '''execute previous fonctions and plot the number of protein with OD in each preteome
     '''
@@ -156,19 +156,13 @@ def main():
             hca_in = os.path.join(directory, filename+".hca")
             cdd_in = os.path.join(directory, filename+".cdd")
             proteome_name = filename.split('.')[0]
-            # outF = os.path.join(dir_out, filename+".orp")
-            # print('fasta reading')
+            outF = os.path.join(dir_out, filename+".orp")
             fasta, protein_number = read_fasta(fasta_in)
-            # print('HCA reading')
             hca = read_pyHCA_outF(hca_in)
-            # print('cdd reading')
             cdd = read_cdd_outF(cdd_in)
-            # print('binary positions reading')
             positions_dom = binary_position(fasta, cdd)
-            # print('match domains reading')
             orph = match_domain (proteome_name, fasta, hca, cdd, positions_dom, protein_number)
-            # print('writting file')
-            # out_file = write_outFile(orph, outF, fasta,proteome_name)
+            out_file = write_outFile(orph, outF, fasta,proteome_name)
 
 
             count = (len(orph), proteome_name, protein_number)
@@ -244,7 +238,7 @@ if __name__ == '__main__':
     print('running...')
 
     directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    # dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/orp_domains_fasta/'
+    dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/orp_domains_fasta/'
     # dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/data/orphans_domaines_pos/'
 
     #TEST
@@ -254,3 +248,4 @@ if __name__ == '__main__':
 
     liste_fasta = os.listdir(directory)
     main()
+    print('succefully done !!!')

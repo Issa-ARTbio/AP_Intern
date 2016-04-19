@@ -46,7 +46,6 @@ def count_fasta_header(directory, liste_cluster, biom):
 def plotting(dict_cluster):
     '''renvoit un barplot du nombre de clusters en fonction du nombre d'especes contenus dans les clusters
     '''
-
     data = {}
     my_list = defaultdict(list)
     for key, num in sorted(dict_cluster.items()):
@@ -91,7 +90,7 @@ def plotting(dict_cluster):
 
     plt.grid(True)
     plt.ylabel("Number of clusters", fontsize=15, color='k', alpha=0.8)
-    plt.xlabel('6 cyano + X species', fontsize=15, color='b', alpha=0.8)
+    plt.xlabel('6 cyano + Number of species in cluster', fontsize=15, color='b', alpha=0.8)
     for a,b in zip(ind, list_cluster_name):
         plt.text(a, list_cluster_name[a], str(b), va = 'bottom', fontsize=11, fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 12})
     plt.title(u"Distribution du nombre de proteines dans les clusters de cyanobacteries biomineranlisantes", fontsize=17, fontdict={'family': 'monospace'})
@@ -100,7 +99,7 @@ def plotting(dict_cluster):
 
 if __name__ == '__main__':
 
-    directory = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/clusters_Biominerales/'
+    directory = '/home/issa/Documents/stage/orthomcl/Intermediaires_clusters/wo_para/tmp/'
     liste_cluster =  os.listdir(directory)
     biom = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
     my_cluster = count_fasta_header(directory, liste_cluster, biom)

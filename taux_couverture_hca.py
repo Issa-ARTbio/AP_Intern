@@ -16,12 +16,13 @@ usage
 python taux_couverture_hca.py
 '''
 
-import os, sys,re
-from collections import defaultdict
-import matplotlib
+import os, sys,re, random
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from collections import defaultdict
+
+
 
 def read_fasta(fasta_in):
     ''''Description de la fonction : lit un fichier .fasta et renvoit un dict avec key = proteome_name et val = dict('protein_name': len_sequence)
@@ -208,8 +209,8 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     fig = plt.figure()
     ax = fig.add_subplot(111)
     data = [res_cdd, dom_cdd, res_hca, dom_hca]
-    # bp = ax.boxplot(data, patch_artist=True, )
-    bp = ax.boxplot(res_cdd, patch_artist=True)
+    bp = ax.boxplot(data, patch_artist=True, )
+    # bp = ax.boxplot(res_cdd, patch_artist=True)
 
     for box in bp['boxes']:
         box.set( color='#7570b3', linewidth=2)
@@ -222,15 +223,35 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
         median.set(color='k', linewidth=2.5)
     for flier in bp['fliers']:
         flier.set(marker='+', color='#e7298a', alpha=0.5)
-    # ax.set_xticklabels(['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
+    ax.set_xticklabels(['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
 
-    biomine = []
+    b_res_cdd = b_dom_cdd = b_res_hca = b_dom_hca = []
+    x1 = x2 =x3 = x4 = []
+
     for proteome in range(len(all_prot_label)):
         if all_prot_label[proteome] in biomin:
-            biomine.append(res_cdd[proteome])
-            print (all_prot_label[proteome], biomine)
-    dx = list(np.arange(len(biomine)))
-    sct = plt.scatter(dx, biomine, color='red', label='biominerales')
+            a = (random.random()*0.005)+1
+            b_res_cdd.append(res_cdd[proteome])
+            c = (random.random()*0.005)+2
+            b_dom_cdd.append(dom_cdd[proteome])
+            d = (random.random()*0.005)+3
+            b_res_hca.append(res_hca[proteome])
+            e = (random.random()*0.005)+4
+            b_dom_hca.append(dom_hca[proteome])
+            x1.append(a)
+            x2.append(c)
+            x3.append(d)
+            x4.append(e)
+    # x = [1.0005]*len(biomine)
+    sct = plt.scatter(x1, b_res_cdd, color='red')
+    sct = plt.scatter(x2, b_dom_cdd, color='grey')
+    sct = plt.scatter(x3, b_res_hca, color='k')
+    sct = plt.scatter(x4, b_dom_hca, color='b', label='biominerales')
+    # ax.set_xticklabels(['couverture en residus CDD'])
+
+    #write the name of sp in plot
+    # for a, b, c in zip(x,b_res_cdd, biomin):
+    #     plt.text(a+0.0001,b,c,ha='center',va = 'top', rotation = '70', fontsize=8, fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 10})
     # Bar Plots ***
     # hca_residues_plot = ax.bar(ind, res_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en residus HCA (%)')
     # hca_domains_plot = ax.bar(ind, dom_hca, width=0.2, alpha=0.5, color='k', label= 'Taux de couverture en domaines HCA (%)')
@@ -285,14 +306,14 @@ if __name__ == '__main__':
 
 
 
-    # directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    # hca_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    # cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
+    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/data/'
 
     #data test
-    hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
-    directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    # hca_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    # cdd_out = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
+    # directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'
 
     liste_fasta = os.listdir(directory)
 
