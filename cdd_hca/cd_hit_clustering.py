@@ -78,12 +78,13 @@ def delete_duplicate(dico_cluster):
 def protein_biomineral(dico_cl_no_dupli, list_biominerale, list_non_biominerale):
     '''Return 2 dico with all proteins in the biominerales and in the non - biominerales species
     '''
-    dico_biominerale = dico_non_biominerale = {}
+    dico_biominerale = {}
     nb=0
     for cluster in dico_cl_no_dupli:
         biom_count = 0
         no_biom_count = 0
         cluster_set = set()
+        dico_biominerale[cluster] = []
         list_protein = dico_cl_no_dupli[cluster]
         for protein, aa in list_protein:
             proteome = protein.split('|')[1]
@@ -98,15 +99,14 @@ def protein_biomineral(dico_cl_no_dupli, list_biominerale, list_non_biominerale)
                 no_biom_count +=1
                 # print(proteome)
 
-        if biom_count >= 5 and no_biom_count <= 0:
+        if biom_count >= 5and no_biom_count <= 0:
             nb+=1
-            print(cluster, len(list_protein))
-            # dico_biominerale[cluster]
-            # print(list_protein)
-            # print(proteome)
-            # print('=====')
+            # print(cluster, len(list_protein))
+            # print(set_pro)
+            # print(protein)
+            dico_biominerale[cluster].append(list_protein)
+    print(dico_biominerale)
     print('nombre de cluster =' , nb)
-    print(set_pro)
 
 # def write_fasta()
 

@@ -19,12 +19,12 @@ def read_fasta(directory_fasta, liste_fasta):
         if filename.endswith('.fasta'):
             path_proteome = os.path.join(directory_fasta, filename)
             proteome_name = filename.split('.')[0]
-            dico_all.setdefault(proteome_name, [])
+            dico_all.setdefault(proteome_name, set())
             for line in open(path_proteome):
                 line = line.strip()
                 if line.startswith('>'):
                     name_protein = line[1:].split()[0]
-                    dico_all[proteome_name].append(name_protein)
+                    dico_all[proteome_name].add(name_protein)
     # for x in dico_all:
     #     print(x)
     return dico_all
@@ -66,7 +66,7 @@ def remove_cluster_nonBiom(group, dico_biominerale, dico_non_biominerale):
                     if protein in list_non_biomin:
                         nb_prot_no_biom+=1
 
-            if nb_prot_biom > 4 and nb_prot_no_biom <= 1:
+            if nb_prot_biom > 6 and nb_prot_no_biom <= 0:
                 # norm_biom = nb_prot_biom/nb_prot_total
                 # norm_no_biom = nb_prot_no_biom/nb_prot_total
                 # if norm_biom > norm_no_biom:
