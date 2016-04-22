@@ -39,8 +39,7 @@ def read_pyHCA_outF (hca_in):
             line = line.strip()
             domain = ()
             if line.startswith('>'):
-                pos = line[1:].split()
-                header = pos[0]
+                header = line[1:].split()[0]
             if line.startswith('domain'):
                 domain_start  = line.strip().split()[1]
                 domain_start  = int(domain_start) - 1
@@ -105,15 +104,26 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
         if protein in domain_cdd:
             hca_pos_domain = domain_hca[protein]
             list_position_bin = dico_bin[protein]
+
+                # print('hca', hca_pos_domain)
+                # print('CDD', protein, list_position_bin )
             for start, stop, lenght in hca_pos_domain:
                 couverture_hca = []
                 dom_hca = (start, stop, lenght)
                 for i in range(int(start), int(stop)):
                     couverture_hca.append(list_position_bin[i])
+
                 couverture = (sum(couverture_hca)/lenght)
-                if couverture <= 0.2:
+
+                # if protein == 'Sca259_14987':
+                #     print('Test1', protein, couverture, )
+
+                if couverture <= 0.25:
                     orphelin = (start, stop,couverture)
                     orphan_domains[protein].append(orphelin)
+
+                    # if protein == 'Sca259_14987':
+                    #     print('2 test', protein, couverture)
         else:
             protein_orph = domain_hca[protein]
             for start, stop, lenght in protein_orph:
@@ -126,7 +136,7 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
 def write_outFile (orphan_domains, outF, dico_fasta, proteome_name):
 
     # Write positions of orphan domains in out files
-    # with open (outF, 'w+') as outfile:
+    # with open (outF, 'w') as outfile:
     #     for protein in orphan_domains:
     #         pos = orphan_domains[protein]
     #         for start, stop, couvert in pos:
@@ -156,7 +166,7 @@ def main():
             hca_in = os.path.join(directory, filename+".hca")
             cdd_in = os.path.join(directory, filename+".cdd")
             proteome_name = filename.split('.')[0]
-            outF = os.path.join(dir_out, filename+".orp")
+            outF = os.path.join(dir_out, filename+".pos")
             fasta, protein_number = read_fasta(fasta_in)
             hca = read_pyHCA_outF(hca_in)
             cdd = read_cdd_outF(cdd_in)
@@ -184,7 +194,6 @@ def main():
         orphan_dom_count.append(orphelin)
         proteome_labels.append(proteome)
         protein_count.append(protein_num)
-        print(proteome,len(orphelin_count_all))
 
     fig, ax = plt.subplots()
     # N = len(proteome_labels)
@@ -196,15 +205,11 @@ def main():
     # plot_lin = ax.bar(ind, orphelin_count_all, width=0.2, alpha=0.5, color='r', label= 'Nombre de proteines avec des domaines orphelins')
     P = len(protein_count)
     px = np.arange(P)
-    print(px , type(px))
-    print (len(protein_count), type(protein_count), protein_count)
     # for y1 in protein_count:
     #     plt.scatter(px,y1, color='grey')
         # plt.text(a, protein_pour[a], str(b), va = 'bottom', rotation = 'vertical', fontsize=10, fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 12})
     D = len(orphan_dom_count)
-    # dx = np.arange(D)
     dx = list(np.arange(D))
-    print(len(dx), dx)
     plt.scatter(dx,orphan_dom_count, color='red', label='tst')
         # plt.text(a+0.1, orphelin_count_all[a], str(b), va = 'baseline', rotation = 'vertical', fontsize=10, fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 12})
 
@@ -233,13 +238,13 @@ def main():
     # ax.set_ylim(0,110)
     plt.title(u"Taux de couverture en domaines orphelins\n {Domaines presents sur HCA et absents sur CDD}", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
-    plt.show()
+    # plt.show()
 if __name__ == '__main__':
     print('running...')
 
     directory = '/home/issa/Documents/stage/CDD_pyHCA/data/'
-    dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/orp_domains_fasta/'
-    # dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/data/orphans_domaines_pos/'
+    # dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/orp_domains_fasta/'
+    dir_out   = '/home/issa/Documents/stage/CDD_pyHCA/tmp/'
 
     #TEST
     # directory = '/home/issa/Documents/stage/CDD_pyHCA/CDD/analyse/test_couverture/'

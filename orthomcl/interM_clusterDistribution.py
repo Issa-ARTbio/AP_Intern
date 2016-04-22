@@ -85,7 +85,7 @@ def plotting(dict_cluster):
         lab = '+'+x_label
         labels.append(lab)
 
-
+        #a = (((random.random()*0.2)+1)-0.1)
     ax.set_xticklabels (labels, fontsize=10, color= 'b')
 
     plt.grid(True)
