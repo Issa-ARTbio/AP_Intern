@@ -80,12 +80,15 @@ def protein_biomineral(dico_cl_no_dupli, list_biominerale, list_non_biominerale)
     '''
     dico_biominerale = dico_non_biominerale = {}
     nb=0
+    cluster_set = set()
     for cluster in dico_cl_no_dupli:
         biom_count = 0
         no_biom_count = 0
         list_protein = dico_cl_no_dupli[cluster]
         for protein, aa in list_protein:
             proteome = protein.split('|')[1]
+            cluster_set.add(proteome)
+        for proteome in cluster_set:
 
             if proteome in list_biominerale:
                 biom_count +=1
@@ -93,13 +96,16 @@ def protein_biomineral(dico_cl_no_dupli, list_biominerale, list_non_biominerale)
                 no_biom_count +=1
                 # print(proteome)
 
-        if biom_count >= 3 and no_biom_count <= 3:
+        if biom_count >= 3 and no_biom_count <= 0:
             nb+=1
             print(cluster, len(list_protein))
+            # dico_biominerale[cluster]
             # print(list_protein)
             # print(proteome)
             # print('=====')
     print('nombre de cluster =' , nb)
+
+# def write_fasta()
 
 def plotting (dico_cluster, dico_cl_no_dupli):
     '''plot the number of cluster according the number of protein in each cluster
