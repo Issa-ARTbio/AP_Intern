@@ -207,8 +207,6 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
 
 
     #Plots
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111)
     fig, ax = plt.subplots()
     data = [res_cdd, dom_cdd, res_hca, dom_hca]
     bp = ax.boxplot(data, patch_artist=True, )
@@ -226,7 +224,7 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     for flier in bp['fliers']:
         flier.set(marker='+', color='#e7298a', alpha=0.5)
     ax.set_xticklabels(['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
-
+    plt.show()
     b_res_cdd = b_dom_cdd = b_res_hca = b_dom_hca = []
     x1 = x2 =x3 = x4 = []
 
@@ -263,23 +261,6 @@ def plotting (couverture_residues_hca, couverture_domaines_hca, couverture_resid
     # cdd_dom_plot = ax.bar(ind+width, dom_cdd, width=0.2, alpha=0.5, color='b', label= 'Taux de couverture en domaines CDD (%)')
 
 
-    #Box Plot ***
-
-    #panda
-    # dataF = pd.DataFrame(all_couverture, columns=['couverture en residus CDD', 'couverture en domaines CDD', 'couverture en residus HCA', 'couverture en domaines HCA'])
-
-    # biomin = ['Synechococcus_sp_PCC_6312', 'Synechococcus_calcipolaris', 'Thermosynechococcus_elongatus_BP1', 'Gloeomargarita_lithophora', 'Cyanothece_sp_PCC_7425', 'Chroococcidiopsis_thermalis_PCC_7203']
-    #
-    # N = len(res_cdd)
-    # ind = np.arange(N)
-    # # plt.boxplot(res_cdd)
-    # biomine = []
-    # for proteome in range(len(list_proteome_name)):
-    #     if list_proteome_name[proteome] in biomin:
-    #         biomine.append(res_cdd[proteome])
-    #         name.append(proteome)
-    # pos_x = np.arange(len(biomine))
-    # plt.scatter(list(pos_x),biomine, color='red', label='biominerales')
 
     # ax.set_xticklabels (all_prot_label, rotation='vertical', fontsize=10)
     # for name in ax.set_xticklabels(list_proteome_name, rotation= 'vertical', fontsize=10):
@@ -322,6 +303,6 @@ if __name__ == '__main__':
 
 
 
-    resid_HCA, domain_HCA, resid_CDD, domain_CDD = taux_couverture (directory, liste_fasta, hca_out, cdd_out)
+    resid_HCA, domain_HCA, resid_CDD, domain_CDD = taux_couverture(directory, liste_fasta, hca_out, cdd_out)
     plotting(resid_HCA, domain_HCA, resid_CDD, domain_CDD)
     print('succefully done !!!')
