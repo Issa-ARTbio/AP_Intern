@@ -118,7 +118,7 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
                 # if protein == 'Sca259_14987':
                 #     print('Test1', protein, couverture, )
 
-                if couverture <= 0.25:
+                if couverture <= 0.20:
                     orphelin = (start, stop,couverture)
                     orphan_domains[protein].append(orphelin)
 
@@ -155,7 +155,7 @@ def write_outFile (orphan_domains, outF, dico_fasta, proteome_name):
                     sequence_domain = ''.join(str(aa) for aa in domain)
                     outfile.write('>'+protein+'|'+proteome_name+'\n'+str(sequence_domain)+'\n')
 def main():
-    '''execute previous fonctions and plot the number of protein with OD in each preteome
+    '''execute previous fonctions and plot the number of protein with OD in each proteome
     '''
     list_of_count = []
 

@@ -4,7 +4,7 @@
 ''' Orphan domains analyses'''
 
 
-# import sys
+import sys
 # from collections import defaultdict
 # import matplotlib
 # import matplotlib.pyplot as plt
@@ -75,42 +75,33 @@ def delete_duplicate(dico_cluster):
                 dico_cl_no_dupli[cluster].append(tpl)
     return dico_cl_no_dupli
 
-def protein_biomineral(fasta, dico_cluster, list_biominerale, list_non_biominerale):
-    '''Return 2 dico with all proteins in the biominerales and in the non - biominerales species
+def protein_biomineral(fasta, dico_cl_no_dupli, list_biominerale, list_non_biominerale):
+    '''Return 2 dicos with all proteins in the biominerales and in the non - biominerales species
     '''
-    dico_fasta = {}
-    with open(fasta) as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith('>'):
-                protein_id = line[1:]
-                dico_fasta[protein_id]= ''
-            else:
-                seq = line
-                dico_fasta[protein_id]=seq
-
     dico_biominerale = {}
     nb=0
+    print(dico_cl_no_dupli)
     for cluster in dico_cluster:
-        biom_count = 0
-        no_biom_count = 0
-        cluster_set = set()
-        # dico_biominerale[cluster] = []
-        list_protein = dico_cluster[cluster]
-        for protein, aa in list_protein:
-            proteome = protein.split('|')[1]
-            cluster_set.add(proteome)
-        set_pro = set()
-        for proteome in cluster_set:
-
-            if proteome in list_biominerale:
-                biom_count +=1
-                set_pro.add(proteome)
-            elif proteome in list_non_biominerale:
-                no_biom_count +=1
-
-        if biom_count >= 4 and no_biom_count <= 1:
-            nb+=1
+        print(cluster)
+        # list_protein = dico_cluster[cluster]
+        # biom_count = 0
+        # no_biom_count = 0
+        # cluster_set = set()
+        #
+        # for protein, aa in list_protein:
+        #     proteome = protein.split('|')[1]
+        #     cluster_set.add(proteome)
+        # set_pro = set()
+        # for proteome in cluster_set:
+        #
+        #     if proteome in list_biominerale:
+        #         biom_count +=1
+        #         set_pro.add(proteome)
+        #     elif proteome in list_non_biominerale:
+        #         no_biom_count +=1
+        #
+        # if biom_count >= 4 and no_biom_count <= 1:
+        #     nb+=1
             # with open(output, 'w') as out:
     #         print(cluster, len(list_protein))
             # print(protein, aa)
@@ -119,7 +110,19 @@ def protein_biomineral(fasta, dico_cluster, list_biominerale, list_non_biominera
 
 
 
-# def write_fasta (fasta, cluster_biom)
+def write_fasta (fasta, cluster_biom):
+
+        dico_fasta = {}
+        with open(fasta) as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('>'):
+                    protein_id = line[1:]
+                    dico_fasta[protein_id]= ''
+                else:
+                    seq = line
+                    dico_fasta[protein_id]=seq
+
 def plotting (dico_cluster, dico_cl_no_dupli):
     '''plot the number of cluster according the number of protein in each cluster
     '''
@@ -163,11 +166,12 @@ if __name__ == '__main__':
     list_non_biominerale = ['Gloeobacter_violaceus_PCC7421', 'Synechococcus_elongatus_PCC6301', 'Synechocystis_sp_PCC_7509', 'Synechocystis_sp_PCC6803', 'Gloeocapsa_sp_PCC_7428', 'Gloeobacter_kilaueensis_JS1']
     fasta = '/home/issa/Documents/stage/cd-hit/30result.fasta'
     output = '/home/issa/Documents/stage/cd-hit/biominerales_clusters/'
-    cdhit30 = '/home/issa/Documents/stage/cd-hit/30result.fasta.clstr'
+    # cdhit30 = '/home/issa/Documents/stage/cd-hit/30result.fasta.clstr'
+    cdhit30 = sys.argv[1]
     # outF = sys.argv[2]
 
     cd_hit = read_cdhit_out(cdhit30)
-    # cd_hit_no_dupli = delete_duplicate(cd_hit)
+    cd_hit_no_dupli = delete_duplicate(cd_hit)
     # write_output(cd_hit_no_dupli, outF)
     # plotting(cd_hit, cd_hit_no_dupli)
-    protein_biomineral(cd_hit, list_biominerale, list_non_biominerale, fasta)
+    protein_biomineral(cd_hit_no_dupli, list_biominerale, list_non_biominerale, fasta)

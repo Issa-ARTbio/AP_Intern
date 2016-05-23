@@ -136,7 +136,7 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     ind = np.arange(N)
     width = 0.35
 
-    dom = ax.bar(ind, cluster_all, width=0.6, alpha=0.4, color='b', label= 'Proteines conservees')
+    dom = ax.bar(ind, cluster_all, width=0.6, alpha=0.4, color='b', label= 'conserves')
     dom = ax.bar(ind, cluster_inter, bottom=cluster_all, width=0.7, alpha=0.6, color='grey', label= 'intermediaires')
     bottom_spec = []
     for x,y in zip(cluster_all,cluster_inter):
@@ -150,8 +150,8 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     print(sum(all_values))
     ax.set_xlim(-width,len(ind)+width)
     ax.set_xticks(ind+width)
-    ax.set_xticklabels (label_names, rotation='vertical', fontsize=10)
-    for name in ax.set_xticklabels(label_names, rotation= 'vertical', fontsize=10):
+    ax.set_xticklabels (label_names, rotation='vertical', fontsize=11)
+    for name in ax.set_xticklabels(label_names, rotation= 'vertical', fontsize=11):
         if re.search('Synechococcus_sp_PCC_6312', str(name)) :
             name.set_color('green')
         elif re.search('Synechococcus_calcipolaris' , str(name)):
@@ -172,9 +172,9 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     # ax.set_ylim(0,500)
     for a,b in zip(ind,all_values):
         plt.text(a, b, str(b), va = 'bottom',fontsize=10, rotation='vertical', fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 16})
-    plt.title(u"Le nombre total de proteines par proteome dans les clusters", fontsize=17, fontdict={'family': 'monospace'})
+    # plt.title(u"Le nombre total de proteines par proteome dans les clusters", fontsize=17, fontdict={'family': 'monospace'})
     ax.legend(loc='upper left', fontsize=10)
-    # plt.show()
+    plt.show()
 
 if __name__ == '__main__':
 

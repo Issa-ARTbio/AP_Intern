@@ -42,7 +42,7 @@ def compute_length (dict_proteome):
 
 if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme est execute. Importe plus facilement les fonctions
 
-    proteome_dir = '/home/issa/Documents/STAGE/Init_data/proteomes/'
+    proteome_dir = '/home/issa/Documents/stage/initial_data/proteomes/'
     out_file = 'outf.dat'
     l = os.listdir(proteome_dir)
 
@@ -53,6 +53,7 @@ if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme
         if filename.endswith('.fasta'):
             path_proteome = os.path.join(proteome_dir, filename)
             filename = filename.split('.')[0]
+            print(filename)
             list_proteome_name.append(filename)
             dico_protein = read_fasta(path_proteome)
             long_protein = compute_length (dico_protein)
