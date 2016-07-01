@@ -38,13 +38,16 @@ def plotting (dico):
 
     for value in sorted(my_list):
         cluster_num=[]
+        # print(int(value))
         list_values.append(int(value))
         for number in my_list[value].split():
             tmp = number.split('_')
             num = tmp[1]
             cluster_num.append(num)
+        # print(len(cluster_num))
         list_cluster_name.append((len(cluster_num)))
-
+    print(sum(list_cluster_name))
+    print(len(list_values))
     fig, ax = plt.subplots()
     N = len(list_cluster_name)
     ind = np.arange(N)

@@ -99,6 +99,7 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
     """find the orphan domains between HCA and CDD domain_list with coverage <= 20%
     """
     orphan_domains = defaultdict(list)
+    annot_domains = defaultdict(list)
     prot_has_both_dom = set(domain_hca.keys()).intersection(set(domain_cdd.keys()))
     for protein in domain_hca:
         if protein in domain_cdd:
@@ -117,7 +118,6 @@ def match_domain(proteome_name, dico_fasta, domain_hca, domain_cdd, dico_bin, nu
 
                 # if protein == 'Sca259_14987':
                 #     print('Test1', protein, couverture, )
-
                 if couverture <= 0.20:
                     orphelin = (start, stop,couverture)
                     orphan_domains[protein].append(orphelin)

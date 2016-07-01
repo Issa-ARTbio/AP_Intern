@@ -57,8 +57,9 @@ def comp_proteome(path_proteome, outf):
         for aa in list_aa:
             # Ajoute le nombre total de l'aa s'il est presente, sinon, renvoie 0
             nb_aa = composition.get(aa, 0)
-            percentage = nb_aa*100 / taille_proteome
-            new_line.append("{} {}".format(nb_aa, percentage))
+            percentage = nb_aa*100 /taille_proteome
+            print(percentage)
+            new_line.append("{} {}".format(nb_aa, '%.2f' % percentage))
         outf.write("{}\n".format("\t".join(new_line)))
 def main():
     """ start programme

@@ -22,9 +22,9 @@ def read_fasta(path_proteome):
             if line.startswith('>'):
                 name_protein = line[1:].split()[0]
                 # list_protein_name.append(name_protein)
-                if name_protein in dict_proteome:
-                    print("Error, protein {} already exists".format(name_protein))
-                    sys.exit(1)
+                # if name_protein in dict_proteome:
+                #     print("Error, protein {} already exists".format(name_protein))
+                #     sys.exit(1)
                 dict_proteome[name_protein] = ""
             else:
                 dict_proteome[name_protein] += line.strip()
@@ -42,7 +42,7 @@ def compute_length (dict_proteome):
 
 if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme est execute. Importe plus facilement les fonctions
 
-    proteome_dir = '/home/issa/Documents/stage/initial_data/proteomes/'
+    proteome_dir = '/home/issa/Documents/stage/DAs_VS_DOs/DAs/'
     out_file = 'outf.dat'
     l = os.listdir(proteome_dir)
 
@@ -50,7 +50,7 @@ if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme
     liste_Totale = []
     list_proteome_name = []
     for filename in l:
-        if filename.endswith('.fasta'):
+        if filename.endswith('.faa'):
             path_proteome = os.path.join(proteome_dir, filename)
             filename = filename.split('.')[0]
             print(filename)
@@ -85,8 +85,8 @@ if __name__ == '__main__': #Execute ce qui est en dessous que quand le programme
             elif  re.search ('Chroococcidiopsis_thermalis_PCC_7203', str(i)):
                 i.set_color('red')
         plt.grid(True)
-        plt.ylabel('Sequences', fontsize=15, color='blue')
-        plt.xlabel('Proteomes', fontsize=15, color='red')
-        plt.title(u"Distribution de la Taille des sequences dans les Proteomes", fontsize=17, fontdict={'family': 'monospace'})
+        plt.ylabel('Taille des fragments', fontsize=30, color='blue')
+        plt.xlabel('Proteomes', fontsize=30, color='red')
+        plt.title(u"Distribution de la Taille des Domaines annotés au sein des Proteomes", fontsize=23, fontdict={'family': 'monospace'})
         # plt.savefig(filename+u'boxplotProteome.png')
         plt.show()

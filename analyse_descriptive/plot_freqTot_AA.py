@@ -45,10 +45,7 @@ def Freq_AA (proteom_composition_aa):
                 dico_freq.setdefault (liste_aa[i], dict())
                 dico_freq[liste_aa[i]][proteome_name] = (float(val.split()[1]))/100
 
-    N = 111
-    n = 20
-    ind = np.arange(N)
-    indp= np.arange(n)
+
     datas= []
     d=[]
     width = 0.35
@@ -63,6 +60,7 @@ def Freq_AA (proteom_composition_aa):
         for proteome in data:
             data_aa=(data[proteome])
             values_aa.append(data_aa)
+            # print(aa, len(values_aa))
             d.append(values_aa)
             values_aa = sorted(values_aa)
             labels_prt.append(proteome)
@@ -73,9 +71,11 @@ def Freq_AA (proteom_composition_aa):
         petit = ['S', 'T','C','P']
         apolaire = ['A', 'G' , 'V', 'L', 'M', 'I', 'F', 'Y', 'W']
         polaire = ['D', 'E', 'K', 'R', 'H', 'N', 'Q']
-        my_label_dico = { A:'apolaire (A)', G:'apolaire (G)', V:'Aliphatique (V)' , L:'Aliphatique (L)', M:'Hydrophobe fort(M)', I:'Aliphatique (I)', F:'aromatique (F)', Y:'aromatique (Y)', W:'aromatique (W)',
-            K:'Polaire charge positif (K)', R:'Polaire charge positif (R)', H:'Polaire charge positif (H)', D:'Polaire charge negatif (D)', E:'Polaire charge negatif (E)', H:'polaire non charge (N)', Q:'polaire non charge (Q)'
-            S:'polaire non charge (S)', T:'polaire non charge (T)', C:'polaire non charge (C)', P:'apolaire (P)'}
+        N = 111 # nombre de proteolmes dans l'analyse
+        n = 20
+        ind = np.arange(N)
+        indp= np.arange(n)
+        my_label_dico = { 'A':'apolaire (A)', 'G':'apolaire (G)', 'V':'Aliphatique (V)' , 'L':'Aliphatique (L)', 'M':'Hydrophobe fort(M)', 'I':'Aliphatique (I)', 'F':'aromatique (F)', 'Y':'aromatique (Y)', 'W':'aromatique (W)', 'K':'Polaire charge positif (K)', 'R':'Polaire charge positif (R)', 'H':'Polaire charge positif (H)', 'D':'Polaire charge negatif (D)', 'E':'Polaire charge negatif (E)', 'H':'polaire non charge (N)', 'Q':'polaire non charge (Q)', 'S':'polaire non charge (S)', 'T':'polaire non charge (T)', 'C':'polaire non charge (C)', 'P':'apolaire (P)'}
         if aa in apolaire:
             my_handle.append(aa)
             if aa == 'A': plt.plot(ind, values_aa, linewidth = 2 , color = 'purple',marker= '>', label= 'apolaire (A)')#, zorder=1)
@@ -108,20 +108,21 @@ def Freq_AA (proteom_composition_aa):
     f = sorted (f)
     plt.grid(True)
     plt.xticks(f , fontsize=2)
-    plt.xlabel('Proteomes', fontsize=15, color='blue')
-    plt.ylabel('Frequence', fontsize=15, color='red')
-    plt.title('Distribution de la Frequence des aa dans les Proteomes', fontdict={'family': 'monospace'})
-    ncol = 3
-    for aa in liste_aa:
-        if aa in apolaire:
-            plt.legend(ncol = [i for i in range(ncol)])
-        if aa in apolaire:
-            plt.legend(ncol = [i+1 for i in range(ncol)])
-        if aa in apolaire:
-            plt.legend(ncol = [i+2 for i in range(ncol)])
+    plt.xlabel('Proteomes', fontsize=30, color='red')
+    plt.ylabel('Frequence', fontsize=30, color='red')
+    # plt.title('Frequence de la composition en aa des domaines orphelins', fontdict={'family': 'monospace'})
+    # ncol = 3
+    # for aa in liste_aa:
+    #     if aa in apolaire:
+    #         plt.legend(ncol = [i for i in range(3)])
+    #     if aa in apolaire:
+    #         plt.legend(ncol = [i+1 for i in range(3)])
+    #     if aa in apolaire:
+    #         plt.legend(ncol = [i+2 for i in range(3)])
+    plt.legend(loc= 'upper left', ncol=3, fontsize=15)
     plt.show()
     # plt.savefig(aa+u'_Freqence.pdf')
 
 
-proteom_composition_aa = './old_/proteome_composition_AA.csv'
+proteom_composition_aa = '/home/issa/Documents/stage/results_sortie/analyses_descrip/proteome_composition_AA.csv'
 frequence_aa = Freq_AA (proteom_composition_aa)

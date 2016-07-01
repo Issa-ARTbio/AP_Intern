@@ -6,7 +6,7 @@
 repartit les differents clusters en fonction du nombre de proteome presents
 clusters avec tous les proteomes representes (conserves)
 clusters avec au moins 2 proteomes et au plus n-1 avec n = nombre de proteomes (111 dans notre cas) (intermediaires)
-cluster specifique avec un seul proteome represente (specifiques)
+cluster specifique avec un seul proteome represente
 
 
 Parametres:
@@ -30,8 +30,8 @@ def count_clusters(good_prot, proteomes_name, groups):
     '''
     with open (groups, 'r') as out_mcl, open (good_prot, 'r') as f:
 
-        all_proteins       = set()
-        my_ortho_cluster   = set()
+        all_proteins = set()
+        my_ortho_cluster = set()
         for ortho in out_mcl :
 
             ortho = ortho.rstrip()
@@ -40,14 +40,13 @@ def count_clusters(good_prot, proteomes_name, groups):
             for names in my_cluster:
                 my_ortho_cluster.add(names)
 
-        for fasta in f:
-            fasta = fasta.strip()
-            if fasta.startswith('>'):
-                name_protein = fasta[1:].split()[0]
+        for line in f:
+            line = line.strip()
+            if line.startswith('>'):
+                name_protein = line[1:].split()[0]
                 all_proteins.add(name_protein)
 
         singleton = all_proteins - my_ortho_cluster
-
         # Format des singleton idem que celui d'orthomcl pour fichier de sortie (loop optionnel)
         # specifiq = set()
         # singleton=list(singleton)
@@ -69,7 +68,7 @@ def count_clusters(good_prot, proteomes_name, groups):
             prot_spec.append(proteome_single)
             cluster_spec[pos_sing]+=1
 
-        with open (groups, 'r') as clusters:
+        with open(groups, 'r') as clusters:
 
             nb_cluster=0
             for line in clusters:
@@ -93,17 +92,14 @@ def count_clusters(good_prot, proteomes_name, groups):
                 for proteome in dico_proteome_name:
                     for pos, item in enumerate(proteomes_name):
                         if item == proteome:
-                            if len(dico_proteome_name)==1:
+                            if len(dico_proteome_name)<=1:
                                 cluster_spec[pos]+= dico_proteome_name[proteome]
-                            if len(dico_proteome_name) >= len(proteomes_name):
+                            elif len(dico_proteome_name) >= len(proteomes_name):
                                 cluster_all[pos]+=dico_proteome_name[proteome]
                             else:
                                 cluster_inter[pos]+=dico_proteome_name[proteome]
 
-
         return cluster_all, cluster_inter, cluster_spec
-
-
 
 def give_full_name(full_names, proteomes_name):
     ''''Description de la fonction' : retransforme les noms des Proteomes (sous format lisible par orthomcl) aux noms complets initiaux
@@ -122,14 +118,14 @@ def give_full_name(full_names, proteomes_name):
         full_name = match_name[short_name]
 
         label_names.append(full_name)
-    print(len(label_names))
+    # print(len(label_names))
     return label_names
 
 
 
 def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
 
-    ''''Description de la fonction' : renvoit un histogramme superpose aux nombres de clusters avec des proteines conservees intermediaires et specifiqies
+    ''''Description de la fonction' : renvoit un histogramme superpose aux nombres de clusters avec des proteines conservees intermediaires et specifiques
     '''
     fig, ax = plt.subplots()
     N = len(label_names)
@@ -147,11 +143,11 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
     for x,y in zip(bottom_spec,cluster_spec):
         z=x+y
         all_values.append(z)
-    print(sum(all_values))
+    # print((all_values))
     ax.set_xlim(-width,len(ind)+width)
     ax.set_xticks(ind+width)
-    ax.set_xticklabels (label_names, rotation='vertical', fontsize=11)
-    for name in ax.set_xticklabels(label_names, rotation= 'vertical', fontsize=11):
+    ax.set_xticklabels (label_names, rotation='vertical', fontsize=13)
+    for name in ax.set_xticklabels(label_names, rotation= 'vertical', fontsize=13):
         if re.search('Synechococcus_sp_PCC_6312', str(name)) :
             name.set_color('green')
         elif re.search('Synechococcus_calcipolaris' , str(name)):
@@ -167,13 +163,16 @@ def plotting (label_names, cluster_all, cluster_inter, cluster_spec):
         elif  re.search ('Chroococcidiopsis_thermalis_PCC_7203', str(name)):
             name.set_color('red')
     plt.grid(True)
-    plt.ylabel('Nombre de proteines', fontsize=15, color='r', alpha=0.8)
-    plt.xlabel('Proteomes', fontsize=15, color='b', alpha=0.8)
+    plt.ylabel('Nombre de proteines', fontsize=30, color='r', alpha=0.8)
+    plt.xlabel('Proteomes', fontsize=30, color='b', alpha=0.8)
     # ax.set_ylim(0,500)
+    print(sum(cluster_all))
+    print(sum(cluster_inter))
+    print(sum(cluster_spec))
     for a,b in zip(ind,all_values):
         plt.text(a, b, str(b), va = 'bottom',fontsize=10, rotation='vertical', fontdict={'family': 'serif', 'color':  'k', 'weight': 'normal','size': 16})
     # plt.title(u"Le nombre total de proteines par proteome dans les clusters", fontsize=17, fontdict={'family': 'monospace'})
-    ax.legend(loc='upper left', fontsize=10)
+    ax.legend(loc='upper left', fontsize=32)
     plt.show()
 
 if __name__ == '__main__':
@@ -192,7 +191,6 @@ if __name__ == '__main__':
         if filename.endswith('.fasta'):
             proteome_name = filename.split('.')[0]
             proteomes_name.append(proteome_name)
-
 
     core, inter, spec = count_clusters(good_prot,proteomes_name, groups)
     liste_names = give_full_name(full_names, proteomes_name)
