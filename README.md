@@ -1,8 +1,8 @@
 # Caractérisation des Domaines Orphelins au Sein des Protéomes. Application à l’étude de mécanismes de biominéralisation intracellulaire chez les cyanobactéries
-
-Ce programme en cours de developpement est destiné à analyser des données protéomiques. Plus particilièrement, nous avons cherché à caractériser les domaines orphelins au sein d'une centaine de protéome de cyanobactéries. Une méthodologie combinant à la fois une approche phylogénétique et une annotation par les banques de domaines publiques [CDD](http://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml) et par l'outil [segHCA](http://guilhem.faure.free.fr/hcasuite.html) développé au sein de l'équipe et qui permet une prédiction structurale de la structure 2D à partir de l'info dispo sur la séquence.
-
 Issa DIOP
+
+Ce programme est destiné à analyser des données protéomiques. Plus particilièrement, nous avons cherché à caractériser les domaines orphelins au sein d'une centaine de protéome de cyanobactéries. Une méthodologie combinant à la fois une approche phylogénétique et une annotation par les banques de domaines publiques [CDD](http://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml) et par l'outil [segHCA](http://guilhem.faure.free.fr/hcasuite.html) développé au sein de l'équipe bioinformatique de l'[IMPMC](http://www.impmc.upmc.fr/fr/equipes/biophysique_et_bioinformatique.html) et qui permet une prédiction structurale de la structure 2D à partir de l'info dispo sur la séquence.
+
 
 ## Resumé
 
